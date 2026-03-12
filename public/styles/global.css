@@ -1922,3 +1922,170 @@ body.v2-home nav.scrolled .nav-logo-sub {
 body.v2-home nav.scrolled .nav-link {
   color: var(--charcoal);
 }
+
+/* ═══════════════════════════════════════════════════════
+   PATCH: Fixes for v2 homepage + shared page styles
+═══════════════════════════════════════════════════════ */
+
+/* ── Fix #3: Hero 75vh on mobile ── */
+@media (max-width: 767px) {
+  .v2-hero {
+    min-height: 75vh;
+  }
+}
+
+/* ── Fix #5: Drawer accordion — bigger, whiter labels + bigger icons ── */
+.drawer-accordion {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.1em;
+  padding: 18px var(--page-px) 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.drawer-accordion-icon {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+}
+.drawer-section-label {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.1em;
+  padding: 18px var(--page-px) 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ── Shared index page styles (used by blog, about, tools, downloads, case-studies) ── */
+.services-index-hero {
+  padding: calc(56px + 48px) var(--page-px) 48px;
+  background: var(--sage);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.services-index-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 30% 30%, rgba(255,255,255,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 50% at 80% 80%, rgba(74,99,87,0.5) 0%, transparent 50%);
+}
+.services-index-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.services-index-hero .hero-h1 {
+  font-size: clamp(1.8rem, 5.5vw, 2.6rem);
+  line-height: 1.14;
+}
+.services-index-grid {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px var(--page-px) 60px;
+}
+.services-index-section {
+  margin-bottom: 48px;
+}
+.services-index-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.services-index-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--sand);
+}
+.services-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.services-index-card {
+  display: block;
+  padding: 28px 24px;
+  background: white;
+  border: 1px solid var(--sand);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.services-index-card:hover {
+  border-color: var(--sage);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.services-card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+.services-index-card h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+.services-index-card p {
+  font-size: 0.82rem;
+  color: var(--mid-gray);
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+.services-card-link {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-weight: 500;
+}
+.services-index-card:hover .services-card-link {
+  color: var(--sage-dark);
+}
+.services-index-cta {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--sage-light);
+  border-radius: 6px;
+}
+.services-index-cta h2 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+}
+.services-index-cta p {
+  font-size: 0.85rem;
+  color: var(--mid-gray);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto 24px;
+}
+@media (min-width: 640px) {
+  .services-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .services-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .services-index-hero {
+    padding-top: calc(68px + 80px);
+    padding-bottom: 72px;
+  }
+}
