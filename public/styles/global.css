@@ -2153,3 +2153,8 @@ body.v2-home nav.scrolled .nav-link {
     rgba(0,0,0,0.65) 100%
   );
 }
+
+/* ── Hero eyebrow brighter white ── */
+.v2-hero-eyebrow {
+  color: rgba(255,255,255,0.9);
+}
