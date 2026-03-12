@@ -2158,3 +2158,79 @@ body.v2-home nav.scrolled .nav-link {
 .v2-hero-eyebrow {
   color: rgba(255,255,255,0.9);
 }
+
+/* ── Pricing Tables ── */
+.pricing-table-wrap {
+  overflow-x: auto;
+  margin: 24px 0 32px;
+  -webkit-overflow-scrolling: touch;
+}
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+}
+.pricing-table thead th {
+  text-align: left;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-weight: 600;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--sand);
+  white-space: nowrap;
+}
+.pricing-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--sand);
+  color: var(--charcoal);
+  line-height: 1.5;
+  font-weight: 300;
+  vertical-align: top;
+}
+.pricing-table tbody tr:hover {
+  background: var(--sage-light);
+}
+.pricing-fee {
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--charcoal);
+  min-width: 140px;
+}
+.pricing-notes {
+  color: var(--mid-gray);
+  font-size: 0.8rem;
+  min-width: 200px;
+}
+.pricing-notes-col {
+  min-width: 200px;
+}
+
+/* Hide notes column on small screens, show as tooltip-style row */
+@media (max-width: 640px) {
+  .pricing-table-addons .pricing-notes-col {
+    display: none;
+  }
+  .pricing-table-addons .pricing-notes {
+    display: none;
+  }
+  .pricing-table-addons tbody td:first-child {
+    font-size: 0.82rem;
+  }
+  .pricing-fee {
+    min-width: auto;
+    font-size: 0.82rem;
+  }
+}
+
+/* Content section h3 for sub-headers */
+.content-section h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-top: 32px;
+  margin-bottom: 8px;
+}
