@@ -2089,3 +2089,36 @@ body.v2-home nav.scrolled .nav-link {
     padding-bottom: 72px;
   }
 }
+
+/* ── Footer Social Icons ── */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+.footer-social-icon {
+  color: rgba(255,255,255,0.35);
+  transition: color 0.2s;
+  display: flex;
+}
+.footer-social-icon:hover {
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── Social Card Icons ── */
+.social-card-icon {
+  margin-bottom: 16px;
+}
+.social-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.social-card h3 {
+  text-align: center;
+}
+.social-card p {
+  text-align: center;
+}
