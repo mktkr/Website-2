@@ -2122,3 +2122,15 @@ body.v2-home nav.scrolled .nav-link {
 .social-card p {
   text-align: center;
 }
+
+/* ── Hero 85vh on mobile (overrides previous 75vh) ── */
+@media (max-width: 767px) {
+  .v2-hero {
+    min-height: 85vh;
+  }
+}
+
+/* ── Scorecard section: sage green background ── */
+.v2-scorecard {
+  background: var(--sage);
+}
