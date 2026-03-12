@@ -2134,3 +2134,22 @@ body.v2-home nav.scrolled .nav-link {
 .v2-scorecard {
   background: var(--sage);
 }
+
+/* ── Hero text readability ── */
+.v2-hero-h1 {
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3);
+}
+.v2-hero-body {
+  text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+}
+.v2-hero-eyebrow {
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+}
+.v2-hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.25) 0%,
+    rgba(0,0,0,0.4) 50%,
+    rgba(0,0,0,0.65) 100%
+  );
+}
