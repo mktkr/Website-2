@@ -854,6 +854,7 @@ nav {
 .contact .content-section h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 14px; }
 .contact .content-section p { font-size: 0.86rem; font-weight: 300; color: var(--mid-gray); line-height: 1.78; margin-bottom: 12px; }
 .contact .content-section a { color: var(--sage); text-decoration: underline; }
+.contact .content-section a.btn-schedule { color: white; text-decoration: none; }
 
 /* ═══════════════════════════════════
    FOOTER
