@@ -831,7 +831,7 @@ const description = "Answer a few quick questions to discover what estate plan f
     </div>
   </div>
 
-  <script>
+  <script is:inline>
     // ── State ──
     const state = {
       planStatus: null,
@@ -1131,6 +1131,13 @@ const description = "Answer a few quick questions to discover what estate plan f
       document.getElementById('leadCapture').style.display = 'none';
       document.getElementById('leadSuccess').style.display = 'block';
     }
+
+    // Expose functions to onclick handlers
+    window.goTo = goTo;
+    window.selectOption = selectOption;
+    window.toggleCheck = toggleCheck;
+    window.showResults = showResults;
+    window.submitLead = submitLead;
   </script>
 </body>
 </html>
