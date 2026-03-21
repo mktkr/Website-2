@@ -1038,14 +1038,12 @@ const description = "Answer a few quick questions to discover what estate plan f
         `<span style="color:${b.color};">${b.text}</span></div>`;
 
       // Pricing card
-      let pHtml = `<p class="sc-pricing-label">${rec.isComplex ? 'Core Plan Estimate' : 'Estimated Investment'}</p>`;
-      pHtml += `<div class="sc-pricing-amount">$${rec.lowEstimate.toLocaleString()}`;
-      if (rec.highEstimate > rec.lowEstimate) pHtml += ` – $${rec.highEstimate.toLocaleString()}`;
-      pHtml += `</div>`;
-      pHtml += `<p class="sc-pricing-note">Flat fee · No surprises · Quoted after free consultation</p>`;
+      let pHtml = `<p class="sc-pricing-label">Estimated Fee Range</p>`;
+      pHtml += `<div class="sc-pricing-amount">From $${rec.lowEstimate.toLocaleString()}</div>`;
+      pHtml += `<p class="sc-pricing-note" style="opacity:0.7;line-height:1.5;">Every plan is tailored. Your actual fee may be higher or lower depending on your situation. You'll receive an exact quote at your free 30-minute consultation before you commit to anything.</p>`;
       if (rec.addOns.length > 0) {
         pHtml += `<div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:14px;">`;
-        pHtml += `<p class="sc-addons-label">Includes add-ons for</p>`;
+        pHtml += `<p class="sc-addons-label">Estimated add-ons based on your answers</p>`;
         rec.addOns.forEach(a => {
           pHtml += `<div class="sc-addon-row"><span>${a.name}</span><span>$${a.range[0].toLocaleString()} – $${a.range[1].toLocaleString()}</span></div>`;
         });
