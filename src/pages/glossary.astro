@@ -1,0 +1,494 @@
+---
+/**
+ * Mesa Estate Planning — Glossary of Estate Planning Terms
+ * 
+ * Drop this file into: src/pages/glossary.astro
+ * 
+ * It uses the same BaseLayout your other pages use.
+ * Update the import path for BaseLayout if yours differs.
+ * 
+ * After adding, also:
+ *   1. Add "Glossary" link to your nav under Resources
+ *   2. Add internal links FROM service pages TO glossary anchors
+ *   3. Add to sitemap
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Estate Planning Glossary | Arizona Terms Explained | Mesa Estate Planning";
+const description = "A plain-English guide to estate planning terms Arizona families need to know. From living trusts to community property, learn what matters for your plan.";
+
+const glossaryTerms = [
+  {
+    letter: "A",
+    terms: [
+      {
+        term: "Advance Directive",
+        definition: "In Arizona, this refers to a set of documents — typically a <a href='/services/healthcare-directive'>healthcare power of attorney</a> and a living will — that give instructions about your medical care if you become unable to speak for yourself. Arizona law (A.R.S. § 36-3221) allows you to name a healthcare agent and set specific treatment preferences in a single document."
+      },
+      {
+        term: "Agent (Attorney-in-Fact)",
+        definition: "The person you name in a <a href='/services/financial-power-of-attorney'>power of attorney</a> to act on your behalf. In estate planning, this usually means someone who can manage your finances, sign legal documents, or make healthcare decisions for you if you're unable to do so yourself."
+      },
+      {
+        term: "Annual Gift Tax Exclusion",
+        definition: "The amount you can give to any individual each year without triggering federal gift tax or using any of your lifetime exemption. For 2026, the annual exclusion is $19,000 per recipient. A married couple can give $38,000 per person per year without any tax reporting requirement."
+      },
+      {
+        term: "Arizona Beneficiary Deed",
+        definition: "A deed unique to Arizona (A.R.S. § 33-405) that transfers real property to a named beneficiary automatically at the owner's death — without probate. The owner keeps full control during their lifetime and can revoke the deed at any time. This is one of the simplest ways to avoid probate on Arizona real estate, though it may not be the right choice for every situation."
+      },
+      {
+        term: "Asset Protection",
+        definition: "Legal strategies that shield your wealth from creditors, lawsuits, and other claims. In Arizona, common tools include <a href='/services/asset-protection'>domestic asset protection trusts (DAPTs)</a>, LLCs, family limited partnerships, and homestead exemptions. Effective asset protection must be established before a claim arises — you cannot move assets to avoid an existing creditor."
+      },
+      {
+        term: "Asset Protection Trust",
+        definition: "An irrevocable trust specifically designed to hold assets beyond the reach of future creditors. Arizona enacted its own domestic asset protection trust statute (A.R.S. § 14-10818) in 2022, making it possible to create a self-settled spendthrift trust without moving assets to another state like Nevada or South Dakota."
+      }
+    ]
+  },
+  {
+    letter: "B",
+    terms: [
+      {
+        term: "Beneficiary",
+        definition: "Any person, organization, or entity that receives assets from your estate — whether through a will, trust, life insurance policy, retirement account, or beneficiary deed. Keeping beneficiary designations current is one of the most important (and most overlooked) parts of estate planning."
+      },
+      {
+        term: "Beneficiary Designation",
+        definition: "A form filed with a financial institution, insurer, or retirement plan that names who receives the account when you die. Beneficiary designations override your will. This means that if your will says your daughter gets your IRA but the beneficiary form still names your ex-spouse, your ex-spouse gets the IRA. Reviewing these designations is a critical part of any estate plan review."
+      },
+      {
+        term: "Bypass Trust (Credit Shelter Trust)",
+        definition: "A trust created at the first spouse's death that holds assets up to the federal estate tax exemption amount. The surviving spouse can use the income and even some principal, but the assets aren't counted in the survivor's taxable estate. With the current federal exemption at $15 million per person (2026), bypass trusts are less common for tax purposes but remain useful for protecting assets in blended families or from a surviving spouse's future creditors."
+      }
+    ]
+  },
+  {
+    letter: "C",
+    terms: [
+      {
+        term: "Charitable Remainder Trust (CRT)",
+        definition: "An irrevocable trust that pays income to you (or another beneficiary) for a set period or for life, with the remaining assets going to a charity. CRTs offer an immediate income tax deduction, avoid capital gains on contributed appreciated assets, and provide a stream of income. Commonly used when selling a highly appreciated business or investment property. See <a href='/services/charitable-planning'>charitable planning</a>."
+      },
+      {
+        term: "Community Property",
+        definition: "Arizona is one of nine community property states. Generally, most property acquired by either spouse during marriage belongs equally to both spouses — regardless of whose name is on the title or who earned the income. Exceptions include gifts, inheritances, and property owned before the marriage (which are separate property). This distinction affects how assets are distributed at death and can impact estate tax planning significantly."
+      },
+      {
+        term: "Community Property with Right of Survivorship",
+        definition: "A special form of ownership available in Arizona that combines community property rules with automatic transfer to the surviving spouse at death — without probate. When one spouse dies, their half passes directly to the survivor by operation of law. This also preserves the full stepped-up basis tax benefit that community property provides."
+      },
+      {
+        term: "Conservator",
+        definition: "In Arizona, a person appointed by the court to manage the finances and property of someone who has been found legally incapacitated. A conservatorship is a court proceeding that can be avoided with a properly funded <a href='/services/wills-and-trusts'>revocable living trust</a> and a durable financial power of attorney."
+      },
+      {
+        term: "Corporate Transparency Act (CTA)",
+        definition: "A federal law requiring most LLCs and corporations to report their beneficial owners to FinCEN (the Financial Crimes Enforcement Network). As of 2026, reporting requirements have been subject to ongoing legal challenges and injunctions. If you own or are forming an LLC or corporation as part of your estate or asset protection plan, your attorney should verify the current compliance requirements."
+      }
+    ]
+  },
+  {
+    letter: "D",
+    terms: [
+      {
+        term: "Decedent",
+        definition: "A person who has died. In probate and estate administration, the decedent is the person whose assets are being transferred to their heirs or beneficiaries."
+      },
+      {
+        term: "Digital Assets",
+        definition: "Online accounts, cryptocurrency, digital files, domain names, social media profiles, cloud storage, and other electronically stored property. Arizona adopted the Revised Uniform Fiduciary Access to Digital Assets Act (A.R.S. § 14-13001 et seq.), which gives your trustee, executor, or agent the legal authority to access your digital accounts — but only if your estate planning documents specifically grant that access. Without proper planning, your family may be locked out of important accounts."
+      },
+      {
+        term: "Disclaimer",
+        definition: "A legal refusal to accept an inheritance or gift. In estate planning, disclaimers are used strategically — for example, a surviving spouse might disclaim assets to redirect them into a bypass trust for tax or asset protection purposes. Under federal law, a qualified disclaimer must be made in writing within nine months of the date of death."
+      },
+      {
+        term: "Durable Power of Attorney",
+        definition: "A <a href='/services/financial-power-of-attorney'>power of attorney</a> that remains effective even if you become incapacitated. In Arizona, a power of attorney is presumed to be durable unless the document says otherwise (A.R.S. § 14-5501). This is one of the most essential estate planning documents — without it, your family may need to seek a court-appointed conservatorship to manage your finances."
+      },
+      {
+        term: "Dynasty Trust",
+        definition: "A long-term irrevocable trust designed to pass wealth across multiple generations while minimizing estate and gift taxes at each generational transfer. Arizona allows trusts to last up to 500 years (A.R.S. § 14-2901), making it one of the more favorable states for dynasty trust planning."
+      }
+    ]
+  },
+  {
+    letter: "E",
+    terms: [
+      {
+        term: "Estate",
+        definition: "Everything you own or have a legal interest in at the time of your death — including real estate, bank accounts, investments, retirement accounts, life insurance, business interests, personal property, and digital assets. For federal estate tax purposes, your taxable estate may include assets you don't technically 'own' but control, such as life insurance payable to your beneficiaries."
+      },
+      {
+        term: "Estate Tax (Federal)",
+        definition: "A federal tax on the transfer of property at death. For 2026, estates valued under $15 million per person ($30 million for married couples using portability) owe no federal estate tax. Arizona does not impose a separate state estate tax or inheritance tax. The current exemption levels are set to potentially decrease in the future — making planning ahead valuable even for estates below the current threshold."
+      },
+      {
+        term: "Executor (Personal Representative)",
+        definition: "The person named in your will to manage your estate through the probate process — paying debts, filing tax returns, and distributing assets to your beneficiaries. Arizona uses the term 'personal representative' rather than executor. If you die without naming one, the court appoints someone."
+      }
+    ]
+  },
+  {
+    letter: "F",
+    terms: [
+      {
+        term: "Family Limited Partnership (FLP)",
+        definition: "A partnership between family members used to hold and manage family assets — typically investments, real estate, or a family business. FLPs can provide asset protection, facilitate gifting at discounted values, and keep family assets under centralized management. They require careful structuring and ongoing compliance to withstand IRS scrutiny."
+      },
+      {
+        term: "Fiduciary",
+        definition: "A person or institution that holds a position of trust and has a legal duty to act in someone else's best interest. Trustees, personal representatives, guardians, conservators, and agents under a power of attorney are all fiduciaries. Arizona law imposes specific duties on fiduciaries including loyalty, impartiality, and prudent investment."
+      },
+      {
+        term: "Funding (Trust Funding)",
+        definition: "The process of transferring ownership of your assets into your living trust — re-titling bank accounts, recording new deeds on real property, updating beneficiary designations, and assigning ownership of personal property. A trust that isn't funded provides no probate avoidance. This is the most commonly missed step in trust-based estate planning, and it's the one that causes the most problems."
+      }
+    ]
+  },
+  {
+    letter: "G",
+    terms: [
+      {
+        term: "Generation-Skipping Transfer Tax (GSTT)",
+        definition: "A federal tax imposed on transfers (by gift or at death) to a person who is two or more generations below you — typically a grandchild. The GSTT exemption mirrors the estate tax exemption ($15 million in 2026). It's designed to prevent wealthy families from avoiding a layer of estate tax by skipping a generation."
+      },
+      {
+        term: "Gift Tax (Federal)",
+        definition: "A federal tax on transfers of property during your lifetime for less than full value. You can give up to $19,000 per person per year (2026) without any gift tax consequences. Gifts above that amount use a portion of your lifetime exemption ($15 million). Arizona does not impose a separate state gift tax."
+      },
+      {
+        term: "Guardian",
+        definition: "In Arizona, a person appointed by the court to make personal and healthcare decisions for someone who is incapacitated (an adult) or for a minor child whose parents are unable to care for them. You can nominate a guardian for your children in your will. For adults, a guardianship is a court proceeding that proper estate planning — particularly powers of attorney and a living trust — is designed to avoid."
+      },
+      {
+        term: "Grantor",
+        definition: "The person who creates a trust. Also called the trustmaker, settlor, or trustor. In a revocable living trust, the grantor is typically also the initial trustee and primary beneficiary during their lifetime."
+      }
+    ]
+  },
+  {
+    letter: "H",
+    terms: [
+      {
+        term: "Healthcare Directive (Living Will)",
+        definition: "A document that states your wishes about end-of-life medical treatment — including whether you want life-sustaining treatment, artificial nutrition, or comfort care only. In Arizona, a <a href='/services/healthcare-directive'>healthcare directive</a> works alongside your healthcare power of attorney to ensure your medical wishes are honored when you cannot communicate them yourself."
+      },
+      {
+        term: "HIPAA Authorization",
+        definition: "A written authorization that allows your designated agents, family members, or other individuals to access your protected health information under the Health Insurance Portability and Accountability Act. Without a HIPAA authorization, doctors and hospitals may refuse to share information about your condition with your family — even in an emergency."
+      },
+      {
+        term: "Homestead Exemption",
+        definition: "Arizona provides a homestead exemption that protects up to $400,000 of equity in your primary residence from most creditors (A.R.S. § 33-1101). The exemption is automatic — you don't need to file anything. However, it does not protect against all claims (such as mortgages, mechanics' liens, or IRS liens). This is a key component of any Arizona asset protection strategy."
+      }
+    ]
+  },
+  {
+    letter: "I",
+    terms: [
+      {
+        term: "Incapacity",
+        definition: "A condition — whether caused by illness, injury, or cognitive decline — that prevents a person from managing their own affairs. Estate planning for incapacity is just as important as planning for death. A revocable living trust, durable power of attorney, and healthcare power of attorney together provide a comprehensive incapacity plan that keeps your family out of court."
+      },
+      {
+        term: "Inheritance Tax",
+        definition: "A tax some states impose on the person receiving an inheritance, based on the value received and the beneficiary's relationship to the decedent. Arizona does not have an inheritance tax. Neither does the federal government — the federal estate tax is paid by the estate, not the beneficiary."
+      },
+      {
+        term: "Intestate",
+        definition: "Dying without a valid will or trust. In Arizona, intestacy means the state's default rules (A.R.S. § 14-2101 et seq.) determine who inherits your property — which may not be what you would have chosen. Arizona's intestacy laws prioritize your surviving spouse and descendants, but the specific distribution depends on whether assets are community property or separate property."
+      },
+      {
+        term: "Irrevocable Trust",
+        definition: "A trust that generally cannot be changed or revoked after it's created. Irrevocable trusts are used for estate tax reduction, asset protection, charitable giving, and Medicaid planning. Because you give up control of the assets, they're typically not included in your taxable estate. Types include irrevocable life insurance trusts (ILITs), charitable remainder trusts, special needs trusts, and Medicaid asset protection trusts."
+      },
+      {
+        term: "Irrevocable Life Insurance Trust (ILIT)",
+        definition: "A trust designed to own life insurance policies outside of your taxable estate. When properly structured, the death benefit passes to your beneficiaries free of both income tax and estate tax. ILITs require careful administration — including annual Crummey notices — and must be established before the policy is purchased or at least three years before death."
+      }
+    ]
+  },
+  {
+    letter: "J",
+    terms: [
+      {
+        term: "Joint Tenancy with Right of Survivorship (JTWROS)",
+        definition: "A form of property ownership where two or more people each own an equal, undivided interest. When one owner dies, their share automatically passes to the surviving owner(s) — outside of probate. While simple, JTWROS can create unintended tax consequences and does not provide the control or protection of a trust."
+      }
+    ]
+  },
+  {
+    letter: "L",
+    terms: [
+      {
+        term: "Living Trust (Revocable Living Trust)",
+        definition: "An agreement you create during your lifetime that holds your assets for the benefit of you and your beneficiaries. You typically serve as both the trustmaker and the trustee, maintaining full control during your lifetime. At your death (or incapacity), your successor trustee steps in and manages or distributes assets according to your instructions — privately and without probate. This is the cornerstone of most Arizona estate plans. See <a href='/services/wills-and-trusts'>wills & trusts</a>."
+      },
+      {
+        term: "Living Will",
+        definition: "See <strong>Healthcare Directive</strong> above. In Arizona, a living will is the portion of your advance directive that addresses end-of-life treatment preferences."
+      }
+    ]
+  },
+  {
+    letter: "M",
+    terms: [
+      {
+        term: "Marital Deduction",
+        definition: "A provision in federal tax law that allows an unlimited amount of property to pass between spouses at death without any estate tax — as long as the surviving spouse is a U.S. citizen. The marital deduction defers taxation; it doesn't eliminate it. The assets will be included in the surviving spouse's estate at their death. Planning techniques like bypass trusts and QTIP trusts are used to manage this."
+      },
+      {
+        term: "Medicaid Planning",
+        definition: "Legal strategies to protect assets while qualifying for Medicaid coverage of long-term care costs (such as nursing home or assisted living). In Arizona, the state Medicaid program is called AHCCCS (Arizona Health Care Cost Containment System). Medicaid has strict asset and income limits, and planning must be done carefully and well in advance to comply with five-year lookback rules."
+      }
+    ]
+  },
+  {
+    letter: "N",
+    terms: [
+      {
+        term: "No-Contest Clause (In Terrorem Clause)",
+        definition: "A provision in a will or trust that says anyone who challenges the document will lose their inheritance. Arizona courts generally enforce no-contest clauses (A.R.S. § 14-2517), but with an important exception: if the person challenging the document has probable cause to believe it's invalid, the clause won't apply. These clauses are most useful in situations where family conflict is anticipated."
+      }
+    ]
+  },
+  {
+    letter: "P",
+    terms: [
+      {
+        term: "Payable on Death (POD) / Transfer on Death (TOD)",
+        definition: "Designations on bank accounts, investment accounts, or vehicle titles that transfer the asset directly to a named beneficiary at the owner's death — without probate. POD applies to bank accounts; TOD applies to investment accounts and, in Arizona, to vehicles and real property (via a beneficiary deed). These are simple, effective probate-avoidance tools, but they don't provide the ongoing protection or control of a trust."
+      },
+      {
+        term: "Per Stirpes",
+        definition: "A method of distributing an inheritance that follows family lines. If a beneficiary dies before you, their share passes down to their children (your grandchildren) in equal portions — rather than being redistributed among your surviving children. Per stirpes is the most common distribution method in Arizona estate plans and should be specified in your trust or will."
+      },
+      {
+        term: "Personal Representative",
+        definition: "Arizona's legal term for the person who manages a probate estate. Other states use 'executor' or 'administrator.' The personal representative is responsible for inventorying assets, paying debts and taxes, and distributing property to the rightful heirs or beneficiaries."
+      },
+      {
+        term: "Portability (Estate Tax)",
+        definition: "A federal provision that allows a surviving spouse to use their deceased spouse's unused estate tax exemption — effectively doubling the amount that can pass tax-free. For 2026, this means a married couple can shield up to $30 million from federal estate tax. Portability must be elected by filing a timely estate tax return (IRS Form 706) after the first spouse's death, even if no tax is owed."
+      },
+      {
+        term: "Pour-Over Will",
+        definition: "A will designed to work alongside a revocable living trust. Any assets that weren't transferred into the trust during your lifetime 'pour over' into the trust at your death through probate. A pour-over will acts as a safety net — but any assets that pass through it still go through probate. Proper <strong>trust funding</strong> minimizes the need for the pour-over will to do any heavy lifting."
+      },
+      {
+        term: "Power of Attorney",
+        definition: "A legal document that authorizes someone (your agent) to act on your behalf for financial or healthcare matters. Arizona recognizes both financial powers of attorney (A.R.S. § 14-5501) and healthcare powers of attorney (A.R.S. § 36-3221). A power of attorney is only effective during your lifetime — it terminates at death. See <a href='/services/financial-power-of-attorney'>powers of attorney</a>."
+      },
+      {
+        term: "Probate",
+        definition: "The court-supervised legal process of validating a will, paying debts, and distributing a deceased person's assets. In Arizona, probate is handled by the Superior Court in the county where the decedent lived. The process typically takes 6-12 months, is public record, and involves court filing fees and attorney costs. A properly funded revocable living trust avoids probate entirely."
+      }
+    ]
+  },
+  {
+    letter: "Q",
+    terms: [
+      {
+        term: "QTIP Trust (Qualified Terminable Interest Property Trust)",
+        definition: "A type of marital trust that provides income to the surviving spouse for life while preserving the remaining principal for beneficiaries chosen by the first spouse to die (often children from a prior marriage). QTIP trusts are commonly used in blended family situations to balance providing for the surviving spouse with ensuring that children from a previous relationship ultimately receive their inheritance."
+      },
+      {
+        term: "Qualified Small Business Stock (QSBS)",
+        definition: "Stock in a qualifying C corporation that may be eligible for up to 100% exclusion from federal capital gains tax (up to $10 million or 10× the adjusted basis) under IRC § 1202. QSBS intersects with estate planning when business owners are structuring exits, gifting shares to family, or transferring interests to trusts. See <a href='/services/estate-tax-planning'>estate tax planning</a>."
+      }
+    ]
+  },
+  {
+    letter: "R",
+    terms: [
+      {
+        term: "Required Minimum Distribution (RMD)",
+        definition: "The minimum amount you must withdraw annually from tax-deferred retirement accounts (IRAs, 401(k)s, etc.) starting at age 73 (under current law as of 2026). RMDs significantly impact estate planning because inherited retirement accounts are subject to the 10-year distribution rule under the SECURE Act for most non-spouse beneficiaries — meaning heirs must empty the account within 10 years of your death, potentially creating substantial income tax liability."
+      },
+      {
+        term: "Revocable Living Trust",
+        definition: "See <strong>Living Trust</strong> above."
+      }
+    ]
+  },
+  {
+    letter: "S",
+    terms: [
+      {
+        term: "SECURE Act (Setting Every Community Up for Retirement Enhancement)",
+        definition: "Federal legislation (originally passed in 2019, updated in 2022 as SECURE 2.0) that significantly changed how inherited retirement accounts are distributed. Most non-spouse beneficiaries must now withdraw all funds within 10 years of the account owner's death. This makes retirement account planning — including the use of conduit and accumulation trusts — far more important than it was before."
+      },
+      {
+        term: "Separate Property",
+        definition: "In Arizona, property that belongs to one spouse individually — not subject to community property rules. This includes property owned before marriage, gifts received by one spouse, inheritances, and personal injury awards. The income generated from separate property can become community property if commingled, so careful record-keeping is essential."
+      },
+      {
+        term: "Settlor",
+        definition: "Another term for the person who creates a trust. Also called a grantor or trustmaker."
+      },
+      {
+        term: "Special Needs Trust (Supplemental Needs Trust)",
+        definition: "A trust designed to provide for a person with disabilities without disqualifying them from government benefits like SSI or AHCCCS/Medicaid. The trust funds supplement — but don't replace — public benefits by paying for things like personal care, recreation, education, and quality-of-life enhancements that government programs don't cover."
+      },
+      {
+        term: "Spendthrift Provision",
+        definition: "A clause in a trust that prevents beneficiaries from assigning their trust interest and protects trust assets from the beneficiaries' creditors. Under Arizona law, spendthrift provisions are generally enforceable, meaning creditors of your beneficiaries cannot reach assets held in the trust before distribution."
+      },
+      {
+        term: "Stepped-Up Basis",
+        definition: "When you inherit property, its tax basis is 'stepped up' to the fair market value at the date of the decedent's death. This means if you sell the inherited asset immediately, you owe little to no capital gains tax — even if the decedent originally paid far less for it. In community property states like Arizona, both halves of community property receive a full step-up in basis at the first spouse's death, which is a significant tax advantage."
+      },
+      {
+        term: "Successor Trustee",
+        definition: "The person or institution you name to take over managing your revocable living trust when you can no longer serve — whether due to incapacity or death. Your successor trustee steps in without court involvement, which is one of the primary advantages of trust-based planning over relying solely on a will."
+      }
+    ]
+  },
+  {
+    letter: "T",
+    terms: [
+      {
+        term: "Testamentary Trust",
+        definition: "A trust created by the terms of your will that only comes into existence after your death. Unlike a revocable living trust, a testamentary trust does not avoid probate — the will must go through probate first. However, testamentary trusts can be useful for providing long-term management of assets for minor children or beneficiaries with special needs."
+      },
+      {
+        term: "Trust Administration",
+        definition: "The process of managing and distributing trust assets after the trustmaker's death (or incapacity). This includes notifying beneficiaries, inventorying assets, paying debts and taxes, and making distributions according to the trust terms. Trust administration is private and generally much faster and less expensive than probate."
+      },
+      {
+        term: "Trust Protector",
+        definition: "A third party (often an attorney or trusted advisor) given specific powers under a trust agreement — such as the ability to modify trust terms, change trustees, or adjust distributions in response to changes in law or family circumstances. Trust protectors are increasingly common in modern estate planning, especially in dynasty trusts and special needs trusts."
+      },
+      {
+        term: "Trustee",
+        definition: "The person or institution responsible for managing trust assets and carrying out the terms of the trust agreement. The trustee has a fiduciary duty to act in the best interests of the beneficiaries. In a revocable living trust, you typically serve as your own trustee during your lifetime."
+      }
+    ]
+  },
+  {
+    letter: "U",
+    terms: [
+      {
+        term: "Unified Credit (Applicable Exclusion Amount)",
+        definition: "The amount each person can transfer — during life or at death — without owing federal estate or gift tax. For 2026, the exclusion is $15 million per individual. This amount is scheduled to decrease significantly (potentially by half) when the Tax Cuts and Jobs Act provisions sunset, which could happen as early as 2027 depending on congressional action. Planning now can lock in the current higher exemption."
+      }
+    ]
+  },
+  {
+    letter: "W",
+    terms: [
+      {
+        term: "Will (Last Will and Testament)",
+        definition: "A legal document that directs how your assets should be distributed after your death, names a personal representative to manage your estate, and (critically) designates a guardian for your minor children. A will only takes effect at death and must go through probate. Arizona requires that a will be signed by the testator and witnessed by at least two people. A <a href='/services/wills-and-trusts'>holographic (handwritten) will</a> is valid in Arizona if written entirely in the testator's handwriting and signed."
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+
+  <!-- Hero / Breadcrumb Section -->
+  <section style="padding: 2rem 0 1rem; background: var(--color-cream, #FAF8F4);">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 1.5rem;">
+      <nav style="font-size: 0.85rem; color: var(--color-sage, #5C7A6B); margin-bottom: 1.5rem;">
+        <a href="/" style="color: var(--color-sage, #5C7A6B); text-decoration: none;">Home</a>
+        <span style="margin: 0 0.4rem;">/</span>
+        <a href="/blog" style="color: var(--color-sage, #5C7A6B); text-decoration: none;">Resources</a>
+        <span style="margin: 0 0.4rem;">/</span>
+        <span>Glossary</span>
+      </nav>
+      <h1 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 600; color: var(--color-dark, #1a1a1a); line-height: 1.2; margin-bottom: 1rem;">
+        Estate Planning Glossary
+      </h1>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; line-height: 1.7; color: #4a4a4a; max-width: 640px;">
+        Plain-English definitions of the terms you'll encounter when planning your estate in Arizona. Updated for 2026 with current tax figures, Arizona-specific laws, and modern planning concepts.
+      </p>
+    </div>
+  </section>
+
+  <!-- Jump-to-Letter Navigation -->
+  <section style="border-bottom: 1px solid #e8e4dc; background: #fff; position: sticky; top: 0; z-index: 10;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.25rem; align-items: center;">
+      <span style="font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: #999; margin-right: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Jump to:</span>
+      {glossaryTerms.map(group => (
+        <a
+          href={`#letter-${group.letter}`}
+          style="font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; color: var(--color-sage, #5C7A6B); text-decoration: none; padding: 0.25rem 0.5rem; border-radius: 4px; transition: background 0.15s;"
+          onmouseover="this.style.background='#f0ebe3'"
+          onmouseout="this.style.background='transparent'"
+        >
+          {group.letter}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Glossary Terms -->
+  <section style="padding: 2rem 0 4rem; background: #fff;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 1.5rem;">
+
+      {glossaryTerms.map(group => (
+        <div id={`letter-${group.letter}`} style="margin-bottom: 3rem; scroll-margin-top: 4rem;">
+          <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--color-bronze, #9C7E4A); border-bottom: 2px solid var(--color-bronze, #9C7E4A); padding-bottom: 0.4rem; margin-bottom: 1.5rem;">
+            {group.letter}
+          </h2>
+          {group.terms.map(item => (
+            <div id={item.term.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')} style="margin-bottom: 1.75rem; scroll-margin-top: 4rem;">
+              <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--color-dark, #1a1a1a); margin-bottom: 0.4rem;">
+                {item.term}
+              </h3>
+              <p style="font-family: 'DM Sans', sans-serif; font-size: 1rem; line-height: 1.75; color: #4a4a4a;" set:html={item.definition} />
+            </div>
+          ))}
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section style="padding: 3rem 0; background: var(--color-cream, #FAF8F4); border-top: 1px solid #e8e4dc;">
+    <div style="max-width: 640px; margin: 0 auto; padding: 0 1.5rem; text-align: center;">
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 600; color: var(--color-dark, #1a1a1a); margin-bottom: 0.75rem;">
+        Have questions about a specific term?
+      </h2>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 1.05rem; line-height: 1.7; color: #4a4a4a; margin-bottom: 1.5rem;">
+        Understanding the terminology is the first step. The next step is understanding how it applies to your family. Book a free 30-minute consultation and we'll explain exactly what you need — in plain English.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+        <a href="/contact" style="font-family: 'DM Sans', sans-serif; display: inline-block; background: var(--color-sage, #5C7A6B); color: #fff; padding: 0.85rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 1rem; transition: background 0.2s;" onmouseover="this.style.background='#4d6a5c'" onmouseout="this.style.background='#5C7A6B'">
+          Book Free Consultation
+        </a>
+        <a href="tel:4802695737" style="font-family: 'DM Sans', sans-serif; display: inline-block; background: transparent; color: var(--color-sage, #5C7A6B); padding: 0.85rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 1rem; border: 1.5px solid var(--color-sage, #5C7A6B); transition: background 0.2s;" onmouseover="this.style.background='#f5f0e8'" onmouseout="this.style.background='transparent'">
+          Call (480) 269-5737
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schema.org / SEO structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "name": "Estate Planning Glossary — Arizona Terms Explained",
+    "description": "A plain-English guide to estate planning terms Arizona families need to know.",
+    "url": "https://www.mesaestateplanninglawyer.com/glossary",
+    "publisher": {
+      "@type": "LegalService",
+      "name": "Mesa Estate Planning",
+      "url": "https://www.mesaestateplanninglawyer.com"
+    },
+    "hasDefinedTerm": glossaryTerms.flatMap(group =>
+      group.terms.map(item => ({
+        "@type": "DefinedTerm",
+        "name": item.term,
+        "description": item.definition.replace(/<[^>]*>/g, '')
+      }))
+    )
+  })} />
+
+</BaseLayout>
