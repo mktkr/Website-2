@@ -1,175 +1,129 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const stages = [
+  { num: '01', title: 'Just Starting Out', desc: 'You\'re 18+ and on your own. A healthcare directive and financial power of attorney are the minimum — and most people don\'t have either.', href: '/life-stages/just-starting-out', icon: '🎓' },
+  { num: '02', title: 'Newly Married', desc: 'Arizona is a community property state. Marriage changes how your assets are owned, who inherits them, and what happens if you don\'t plan.', href: '/life-stages/newly-married', icon: '💍' },
+  { num: '03', title: 'Growing Family', desc: 'Kids change everything — including who needs to be protected. Guardianship, trusts for minors, and life insurance planning start here.', href: '/life-stages/growing-family', icon: '👶' },
+  { num: '04', title: 'Blended Families', desc: 'Stepchildren, prior marriages, and separate property create complexity that default Arizona law doesn\'t handle well. Planning is essential.', href: '/life-stages/blended-families', icon: '🏠' },
+  { num: '05', title: 'Peak Earning Years', desc: 'You\'re building real wealth — a business, investments, equity. Asset protection, tax planning, and succession strategies matter now.', href: '/life-stages/peak-earning-years', icon: '📈' },
+  { num: '06', title: 'Divorce or Loss', desc: 'A major life change means your entire plan needs to be reviewed. Beneficiary designations, agents, and trustees may all need to change.', href: '/life-stages/divorce-or-loss', icon: '🔄' },
+  { num: '07', title: 'Approaching Retirement', desc: 'Healthcare directives, beneficiary deed reviews, long-term care planning, and retirement account designations — the pre-retirement checklist.', href: '/life-stages/approaching-retirement', icon: '🌅' },
+  { num: '08', title: 'Legacy & Retirement', desc: 'Charitable planning, dynasty trusts, annual reviews, and the strategies that define what you leave behind and how it\'s remembered.', href: '/life-stages/legacy-and-retirement', icon: '🌳' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "When should I start estate planning?", "acceptedAnswer": { "@type": "Answer", "text": "At 18, you should have a healthcare directive and financial power of attorney at minimum. If you have assets, dependents, or a spouse, you need a more comprehensive plan. The right time is always now — the cost of not having a plan is always higher than the cost of having one." }},
+    { "@type": "Question", "name": "How often should I update my estate plan?", "acceptedAnswer": { "@type": "Answer", "text": "Review every 3-5 years as a baseline, and immediately after any major life event: marriage, divorce, birth of a child, death of a named agent or beneficiary, significant change in assets, or a move to Arizona from another state." }},
+    { "@type": "Question", "name": "Does my estate plan from another state work in Arizona?", "acceptedAnswer": { "@type": "Answer", "text": "It may be legally valid, but it likely isn't optimized for Arizona law. Arizona has specific rules around community property, trust execution, powers of attorney, healthcare directives, and beneficiary deeds that differ from other states. An Arizona attorney should review any out-of-state plan." }},
+  ]
+};
 ---
-
 <BaseLayout
-  title="Mesa Estate Planning | Wills, Trusts & Asset Protection | Mesa, AZ"
-  description="Mesa estate planning attorney helping Arizona families and business owners protect assets, provide for loved ones, and preserve legacies with wills, trusts, and asset protection."
-  keywords="estate planning mesa az, wills trusts mesa arizona, estate attorney mesa, probate avoidance arizona, asset protection mesa"
+  title="Life Stages | Estate Planning for Every Chapter | Mesa Estate Planning"
+  description="Estate planning looks different at every stage of life. Whether you're just starting out, raising a family, building wealth, or planning your legacy — find what matters most right now. Free consultation."
+  keywords="estate planning life stages, when to start estate planning, estate planning young adults arizona, estate planning retirement arizona, estate planning newlyweds, blended family estate planning"
+  schema={faqSchema}
 >
-
-<!-- ═══════════════════════════════════
-     HERO — Fullscreen video background
-═══════════════════════════════════ -->
-<section class="v2-hero">
-  <div class="v2-hero-overlay"></div>
-
-  <!-- Video background (replace src with your video file) -->
-  <video class="v2-hero-video" autoplay muted loop playsinline poster="/images/hero-poster.png">
-    <source src="/video/hero-bg.mp4" type="video/mp4">
-  </video>
-
-  <div class="v2-hero-content">
-    <div class="v2-hero-eyebrow">Mesa, Arizona &middot; Estate Planning</div>
-    <h1 class="v2-hero-h1">Protect what matters.<br><em>Plan what's next.</em></h1>
-    <p class="v2-hero-body">We help Mesa families and business owners build estate plans that protect assets, provide for loved ones, and preserve legacies — with clarity and confidence.</p>
-    <a href="/contact" class="v2-hero-cta">Book Free Consultation</a>
-  </div>
-
-  <!-- Social icons — desktop only -->
-  <div class="v2-hero-social">
-    <div class="v2-hero-social-line"></div>
-    <a href="/social" aria-label="Facebook" class="v2-social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-    </a>
-    <a href="/social" aria-label="LinkedIn" class="v2-social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-    </a>
-    <a href="/social" aria-label="X" class="v2-social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l6.5 8L4 20h2l5.5-6.8L16 20h4l-6.8-8.4L20 4h-2l-5.2 6.4L8 4H4z"/></svg>
-    </a>
-    <a href="/social" aria-label="Instagram" class="v2-social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-    </a>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════
-     SCORECARD CTA BAND
-═══════════════════════════════════ -->
-<section class="v2-scorecard">
-  <div class="v2-scorecard-inner">
-    <h2 class="v2-scorecard-title">How prepared is your estate plan?</h2>
-    <p class="v2-scorecard-body">Get a personalized assessment of where you stand — and what you might be missing.</p>
-    <a href="/tools/estate-plan-scorecard" class="v2-scorecard-btn">Get Your Scorecard</a>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════
-     WHAT WE DO
-═══════════════════════════════════ -->
-<section class="v2-whatwedo">
-  <div class="v2-whatwedo-inner">
-    <div class="v2-whatwedo-img">
-      <img src="/images/tapemeasure.png" alt="Estate planning consultation at Mesa Estate Planning" loading="lazy">
-    </div>
-    <div class="v2-whatwedo-text">
-      <div class="v2-section-label">What We Do</div>
-      <h2 class="v2-section-title">We help you build a plan that actually works.</h2>
-      <p>Our first priority is understanding your situation — your family, your assets, your goals. From there, we build an estate plan that's thorough, clear, and tailored to how your life actually works. Not a template. Not a package. A plan you can explain to your family and trust to hold up when it matters.</p>
-      <p>Long-term relationships built on honest conversation have been the foundation of our practice. We want to earn your trust — and keep it.</p>
-      <a href="/about" class="v2-btn-outline">Get To Know Us</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════
-     HOW WE HELP — Two service cards
-═══════════════════════════════════ -->
-<section class="v2-howwehelp">
-  <div class="v2-howwehelp-header">
-    <div class="v2-section-label">How We Help</div>
-    <h2 class="v2-section-title">Estate planning built around <em>your life</em></h2>
-    <p class="v2-howwehelp-sub">Our world is complex — building a plan to protect what you've built doesn't have to be.</p>
-  </div>
-  <div class="v2-howwehelp-cards">
-    <a href="/who-we-serve/families" class="v2-help-card">
-      <div class="v2-help-card-img">
-        <img src="/images/lego.jpg" alt="Family estate planning" loading="lazy">
+  <section class="services-index-hero">
+    <div class="services-index-hero-content">
+      <div class="hero-eyebrow" style="opacity:1;animation:none;">Life Stages</div>
+      <h1 class="hero-h1" style="opacity:1;animation:none;">Your plan should fit <em>your life</em> — not someone else's</h1>
+      <p class="hero-body" style="opacity:1;animation:none;">A 25-year-old single professional, a couple with a new baby, and a retiree planning their legacy all need estate plans. But not the same estate plan. Find your stage. See what matters most right now.</p>
+      <div class="hero-btns" style="opacity:1;animation:none;">
+        <a href="/contact" class="btn-bronze">Book Free Consultation</a>
+        <a href="tel:4802695737" class="btn-ghost-w">Call (480) 269-5737</a>
       </div>
-      <h3>You &amp; Your Family</h3>
-      <p>Trusts, wills, guardianship designations, healthcare directives, and powers of attorney — the documents that protect your family if something happens to you.</p>
-      <span class="v2-help-card-link">Learn more &rarr;</span>
-    </a>
-    <a href="/who-we-serve/business-owners" class="v2-help-card">
-      <div class="v2-help-card-img">
-        <img src="/images/macbookimage.jpg" alt="Business estate and tax planning" loading="lazy">
+    </div>
+  </section>
+
+  <!-- Timeline Visual -->
+  <section class="ls-timeline-section">
+    <div class="ls-timeline-track">
+      {stages.map((s, i) => (
+        <a href={s.href} class="ls-timeline-node">
+          <span class="ls-timeline-dot">{s.num}</span>
+          <span class="ls-timeline-label">{s.title}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Card Grid -->
+  <section class="services-index-grid">
+    <div class="services-index-section">
+      <div class="services-index-label">Find Your Stage</div>
+      <div class="services-card-grid ls-card-grid">
+        {stages.map(s => (
+          <a href={s.href} class="services-index-card ls-card">
+            <div class="ls-card-num">{s.num}</div>
+            <div class="services-card-icon">{s.icon}</div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+            <span class="services-card-link">Explore this stage &rarr;</span>
+          </a>
+        ))}
       </div>
-      <h3>Business &amp; Tax</h3>
-      <p>Business succession planning, entity formation, QSBS strategies, commercial lease review, and asset protection for owners who've built something worth protecting.</p>
-      <span class="v2-help-card-link">Learn more &rarr;</span>
-    </a>
-  </div>
-  <div class="v2-howwehelp-cta">
-    <a href="/services" class="v2-btn-outline">View All Services</a>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════
-     WORK WITH US — About teaser
-═══════════════════════════════════ -->
-<section class="v2-workwithus">
-  <div class="v2-workwithus-inner">
-    <div class="v2-workwithus-text">
-      <div class="v2-section-label">Work With Us</div>
-      <h2 class="v2-section-title">National-caliber estate planning with <em>Mesa roots</em>.</h2>
-      <p>Mesa Estate Planning was founded on a simple idea: every family deserves the kind of thoroughness and personal attention that most firms reserve for their wealthiest clients. We bring big-firm training and small-firm care to every client we serve.</p>
-      <a href="/about" class="v2-btn-outline">See What Makes Us Different</a>
     </div>
-    <div class="v2-workwithus-img">
-      <img src="/images/family-hero.jpg" alt="Mesa Estate Planning team" loading="lazy">
+
+    <!-- FAQ Section -->
+    <div class="services-index-section" style="max-width:780px;">
+      <div class="services-index-label">Common Questions</div>
+      <div class="faq-section">
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            When should I start estate planning?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>At 18, you should have a <a href="/services/healthcare-directive">healthcare directive</a> and <a href="/services/financial-power-of-attorney">financial power of attorney</a> at minimum. Without these, your parents can't make medical or financial decisions for you once you're a legal adult — even in an emergency. If you have assets, dependents, or a spouse, a more comprehensive plan is essential.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            How often should I update my estate plan?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Review every three to five years as a baseline, and immediately after any major life event: marriage, divorce, birth or adoption of a child, death of a named agent or beneficiary, significant change in assets, or a move to Arizona from another state. An outdated plan can be worse than no plan at all.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            Does my estate plan from another state work in Arizona?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>It may be legally valid, but it likely isn't optimized for Arizona law. Arizona is a community property state with specific rules around trust execution, <a href="/services/financial-power-of-attorney">powers of attorney</a>, healthcare directives, and <a href="/glossary#arizona-beneficiary-deed">beneficiary deeds</a> that differ from other states. Any out-of-state plan should be reviewed by an Arizona attorney before you rely on it.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            What's the difference between "Life Stages" and "Who We Serve"?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p><a href="/who-we-serve">Who We Serve</a> organizes our work by who you are — a family, a business owner, a high-net-worth individual. Life Stages organizes it by where you are in life right now. Many clients find themselves in both. A business owner in their peak earning years, for example, might explore both the <a href="/who-we-serve/business-owners">Business Owners</a> page and the <a href="/life-stages/peak-earning-years">Peak Earning Years</a> page. Start wherever feels most relevant to you.</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
 
+    <div class="services-index-cta">
+      <h2>Not sure which stage fits?</h2>
+      <p>Most people are navigating more than one stage at once — and that's completely normal. Start with a free consultation and we'll build a plan around where you actually are, not where a checklist says you should be.</p>
+      <a href="/contact" class="btn-bronze">Book Free Consultation</a>
+    </div>
+  </section>
 
-<!-- ═══════════════════════════════════
-     RESOURCES — 3 article cards
-═══════════════════════════════════ -->
-<section class="v2-resources">
-  <div class="v2-resources-header">
-    <div class="v2-section-label">Resources</div>
-    <h2 class="v2-section-title">Plain-English estate planning guidance</h2>
-    <p class="v2-resources-sub">We help you understand the complex, take control, and make informed decisions about your future.</p>
-  </div>
-  <div class="v2-resources-cards">
-    <a href="/blog/arizona-family-living-trust" class="v2-resource-card">
-      <div class="v2-resource-tag">Trusts</div>
-      <h3>Does Every Arizona Family Need a Living Trust?</h3>
-      <p>We break down when a trust makes sense, what it costs, and why Arizona's probate process makes this decision critical.</p>
-      <span class="v2-resource-link">Read more &rarr;</span>
-    </a>
-    <a href="/our-process" class="v2-resource-card">
-      <div class="v2-resource-tag">Process</div>
-      <h3>What to Expect When You Work With Us</h3>
-      <p>From free consultation to signed documents and funded trust — a five-step process designed around your situation.</p>
-      <span class="v2-resource-link">Read more &rarr;</span>
-    </a>
-    <a href="/pricing" class="v2-resource-card">
-      <div class="v2-resource-tag">Pricing</div>
-      <h3>How Our Flat-Fee Pricing Works</h3>
-      <p>All work is flat-fee, quoted after the free consultation. You know the total cost before you commit to anything.</p>
-      <span class="v2-resource-link">Read more &rarr;</span>
-    </a>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════
-     CONTACT CTA
-═══════════════════════════════════ -->
-<section class="v2-contact-cta">
-  <div class="v2-contact-cta-overlay"></div>
-  <div class="v2-contact-cta-inner">
-    <div class="v2-section-label" style="color:rgba(255,255,255,0.5);">Contact Us</div>
-    <h2 class="v2-contact-cta-title">Let's get started</h2>
-    <p class="v2-contact-cta-body">Your first consultation is completely free. We'll learn about your situation and tell you exactly what you need — no pressure, no sales pitch.</p>
-    <a href="/contact" class="v2-contact-cta-btn">Book Free Consultation</a>
-  </div>
-</section>
-
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
 </BaseLayout>
