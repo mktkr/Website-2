@@ -1,14 +1,39 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const icons = {
+  student: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M225.9,58.31l-96-32a6,6,0,0,0-3.8,0l-96,32A6,6,0,0,0,26,64v80a6,6,0,0,0,12,0V72.32l38.68,12.9A62,62,0,0,0,99,174.75c-19.25,6.53-36,19.59-48,38A6,6,0,0,0,61,219.28C76.47,195.59,100.88,182,128,182s51.53,13.59,67,37.28A6,6,0,0,0,205,212.72c-12-18.38-28.73-31.44-48-38a62,62,0,0,0,22.27-89.53L225.9,69.69a6,6,0,0,0,0-11.38ZM178,120A50,50,0,1,1,88.63,89.2l37.47,12.49a6,6,0,0,0,3.8,0L167.37,89.2A49.78,49.78,0,0,1,178,120ZM128,89.68,51,64l77-25.68L205,64Z"/></svg>',
+  cheers: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M214.45,215.87l-19.58,5.25L183.5,178.68a38.06,38.06,0,0,0,21.2-44.52c-12.52-46.73-38.55-87.68-39.65-89.4a6,6,0,0,0-6.51-2.58l-24.36,6.09c.11-9.67-.15-15.84-.19-16.55a6,6,0,0,0-4.53-5.54l-32-8A6,6,0,0,0,91,20.76c-1.1,1.72-27.13,42.67-39.65,89.4a38.06,38.06,0,0,0,21.2,44.52L61.13,197.12l-19.58-5.25a6,6,0,1,0-3.1,11.59l48,12.87a6.4,6.4,0,0,0,1.55.2,6,6,0,0,0,1.55-11.8l-16.83-4.51L84.1,157.77A36.43,36.43,0,0,0,88,158a38.08,38.08,0,0,0,36.71-28.17l0-.13c.28-1.15.55-2.29.81-3.44a262.13,262.13,0,0,0,5.73,27.57A38.06,38.06,0,0,0,168,182a36.58,36.58,0,0,0,3.9-.23l11.38,42.45-16.83,4.51a6,6,0,0,0,1.55,11.8,6.4,6.4,0,0,0,1.55-.2l48-12.87a6,6,0,1,0-3.1-11.59Zm-57.27-161C160.06,59.7,165.39,69,171.32,81L134.07,90.3c-.55-11.07-.51-20.31-.37-26.33.05-1.1.1-2.19.14-3.25Zm-58.36-24,23.31,5.83c.07,4.25.11,11.32-.19,20.2-.07,1.18-.16,3.09-.23,5.62-.09,1.82-.19,3.7-.3,5.63l-37.6-9.4C90.08,45.89,95.8,35.93,98.82,30.89Zm14.29,95.89a26,26,0,0,1-50.22-13.52A295.44,295.44,0,0,1,78.64,69.84L120.5,80.31A317.77,317.77,0,0,1,113.11,126.78Zm29.77,23.94a279.09,279.09,0,0,1-8-48.25l41.68-10.42a297.86,297.86,0,0,1,16.56,45.21,26,26,0,1,1-50.23,13.46Zm43.75-108a6,6,0,0,1,2.69-8l16-8a6,6,0,1,1,5.36,10.74l-16,8a6,6,0,0,1-8.05-2.69ZM230,72a6,6,0,0,1-6,6H208a6,6,0,0,1,0-12h16A6,6,0,0,1,230,72ZM34.63,21.32a6,6,0,0,1,8-2.69l16,8a6,6,0,0,1-5.36,10.74l-16-8A6,6,0,0,1,34.63,21.32ZM40,70H24a6,6,0,0,1,0-12H40a6,6,0,0,1,0,12Z"/></svg>',
+  babyCarriage: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M160,34h-8a14,14,0,0,0-14,14v58H53.52A38.05,38.05,0,0,0,16,74a6,6,0,0,0,0,12,26,26,0,0,1,26,26,78.09,78.09,0,0,0,78,78h40a78,78,0,0,0,0-156Zm65.71,72H161.1l47.82-38.25A65.66,65.66,0,0,1,225.71,106ZM152,46h8a65.67,65.67,0,0,1,40,13.53l-50,40V48A2,2,0,0,1,152,46Zm8,132H120a66.09,66.09,0,0,1-65.73-60H225.73A66.09,66.09,0,0,1,160,178Zm-58,46a14,14,0,1,1-14-14A14,14,0,0,1,102,224Zm104,0a14,14,0,1,1-14-14A14,14,0,0,1,206,224Z"/></svg>',
+  intersect: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M172.91,83.09a78,78,0,1,0-89.82,89.82,78,78,0,1,0,89.82-89.82ZM30,96A66,66,0,0,1,160.49,82H160a78.09,78.09,0,0,0-78,78c0,.17,0,.33,0,.49A66.1,66.1,0,0,1,30,96Zm64,64a65.62,65.62,0,0,1,6-27.49L123.49,156A65.62,65.62,0,0,1,96,162c-.65,0-1.3,0-2-.05C94,161.3,94,160.65,94,160Zm40.23-10.25-28-28a66.47,66.47,0,0,1,15.52-15.52l28,28A66.47,66.47,0,0,1,134.23,149.75ZM162,96a65.62,65.62,0,0,1-6,27.49L132.51,100A65.62,65.62,0,0,1,160,94c.65,0,1.3,0,1.95,0C162,94.7,162,95.35,162,96Zm-2,130a66.1,66.1,0,0,1-64.49-52H96a78.09,78.09,0,0,0,78-78c0-.17,0-.33,0-.49A66,66,0,0,1,160,226Z"/></svg>',
+  piggyBank: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M190,116a10,10,0,1,1-10-10A10,10,0,0,1,190,116ZM152,66H112a6,6,0,0,0,0,12h40a6,6,0,0,0,0-12Zm94,46v32a22,22,0,0,1-22,22h-3.77l-16.68,46.71A14,14,0,0,1,190.36,222H177.64a14,14,0,0,1-13.19-9.29L162.06,206H101.94l-2.39,6.71A14,14,0,0,1,86.36,222H73.64a14,14,0,0,1-13.19-9.29L47.76,177.18a85.72,85.72,0,0,1-21.47-50.24A18,18,0,0,0,14,144a6,6,0,0,1-12,0,30,30,0,0,1,24.19-29.43A86.1,86.1,0,0,1,112,34H216a6,6,0,0,1,0,12H187.82a85.92,85.92,0,0,1,35.12,39.83c.6,1.38,1.16,2.77,1.68,4.18A22,22,0,0,1,246,112Zm-12,0a10,10,0,0,0-10-10h-3.66a6,6,0,0,1-5.73-4.2,71.4,71.4,0,0,0-2.68-7.19A74,74,0,0,0,144,46H112A74,74,0,0,0,57.44,170a5.81,5.81,0,0,1,1.22,2l13.09,36.64A2,2,0,0,0,73.64,210H86.36a2,2,0,0,0,1.89-1.33L92.06,198a6,6,0,0,1,5.65-4h68.58a6,6,0,0,1,5.65,4l3.81,10.69a2,2,0,0,0,1.89,1.33h12.72a2,2,0,0,0,1.89-1.33L210.35,158a6,6,0,0,1,5.65-4h8a10,10,0,0,0,10-10Z"/></svg>',
+  cloudLightning: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M156,18A74.21,74.21,0,0,0,86.11,67.3a6.18,6.18,0,0,0-1.83-.62A50.83,50.83,0,0,0,76,66a50,50,0,0,0,0,100h41.4L98.85,196.91A6,6,0,0,0,104,206h29.4l-18.55,30.91a6,6,0,0,0,10.3,6.18l24-40A6,6,0,0,0,144,194H114.6l16.8-28H156a74,74,0,0,0,0-148Zm0,136H76a38,38,0,1,1,6.31-75.48,6.82,6.82,0,0,0,.79.08A72.86,72.86,0,0,0,82,87.65a6,6,0,0,0,12,.7A62.06,62.06,0,1,1,156,154Z"/></svg>',
+  personWalk: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M152,78a30,30,0,1,0-30-30A30,30,0,0,0,152,78Zm0-48a18,18,0,1,1-18,18A18,18,0,0,1,152,30Zm62,114a6,6,0,0,1-6,6c-34.48,0-51.06-16.75-65.7-31.52-3.47-3.51-6.75-6.82-10.15-9.78L117,143.61l38.52,27.51A6,6,0,0,1,158,176v56a6,6,0,0,1-12,0V179.09l-33.92-24.23L77.5,234.39a6,6,0,0,1-11-4.78l55-126.61c-10.18-2.75-23.07,0-38.51,8.29a165.76,165.76,0,0,0-30.92,22,6,6,0,0,1-8.22-8.74,175.4,175.4,0,0,1,33.27-23.77c25.93-14,47.64-14.39,62.77-1.26,3.77,3.27,7.4,6.93,10.9,10.47,13.62,13.75,27.69,28,57.17,28A6,6,0,0,1,214,144Z"/></svg>',
+  crown: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M246,80a26,26,0,1,0-46.6,15.84l-29.83,36.72-26-59.76a26,26,0,1,0-31.16,0l-26,59.76L56.6,95.84a26,26,0,1,0-22.36,10.09L49,194.3A14,14,0,0,0,62.78,206H193.22A14,14,0,0,0,207,194.3l14.73-88.37A26,26,0,0,0,246,80ZM128,38a14,14,0,1,1-14,14A14,14,0,0,1,128,38ZM22,80A14,14,0,1,1,36,94,14,14,0,0,1,22,80ZM195.2,192.33a2,2,0,0,1-2,1.67H62.78a2,2,0,0,1-2-1.67L46.08,104l1.22-.55,36,44.36A6,6,0,0,0,88,150a5.52,5.52,0,0,0,.81-.06,6,6,0,0,0,4.69-3.55l29.92-68.8a25.79,25.79,0,0,0,9.16,0l29.92,68.8a6,6,0,0,0,4.69,3.55,5.52,5.52,0,0,0,.81.06,6,6,0,0,0,4.66-2.22l36-44.36,1.22.55ZM220,94a14,14,0,1,1,14-14A14,14,0,0,1,220,94Z"/></svg>',
+};
+
+const motifs = [
+  '<svg class="ls-motif" viewBox="0 0 200 200"><circle cx="180" cy="180" r="120" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="180" cy="180" r="80" fill="none" stroke="currentColor" stroke-width="0.5"/></svg>',
+  '<svg class="ls-motif" viewBox="0 0 200 200"><path d="M200,40 Q120,80 160,200" fill="none" stroke="currentColor" stroke-width="1"/><path d="M200,0 Q100,60 140,200" fill="none" stroke="currentColor" stroke-width="0.5"/></svg>',
+  '<svg class="ls-motif" viewBox="0 0 200 200"><circle cx="160" cy="160" r="100" fill="none" stroke="currentColor" stroke-width="0.5"/><circle cx="120" cy="180" r="60" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="180" cy="140" r="40" fill="none" stroke="currentColor" stroke-width="0.5"/></svg>',
+  '<svg class="ls-motif" viewBox="0 0 200 200"><path d="M200,100 Q150,50 100,100 Q50,150 0,100" fill="none" stroke="currentColor" stroke-width="1"/><path d="M200,140 Q150,90 100,140 Q50,190 0,140" fill="none" stroke="currentColor" stroke-width="0.5"/></svg>',
+  '<svg class="ls-motif" viewBox="0 0 200 200"><polygon points="200,200 120,200 200,120" fill="none" stroke="currentColor" stroke-width="1"/><polygon points="200,200 80,200 200,80" fill="none" stroke="currentColor" stroke-width="0.5"/><polygon points="200,200 160,200 200,160" fill="none" stroke="currentColor" stroke-width="0.5"/></svg>',
+  '<svg class="ls-motif" viewBox="0 0 200 200"><path d="M200,200 Q100,160 120,60" fill="none" stroke="currentColor" stroke-width="1"/><path d="M160,200 Q60,160 80,60" fill="none" stroke="currentColor" stroke-width="0.5"/></svg>',
+  '<svg class="ls-motif" viewBox="0 0 200 200"><ellipse cx="160" cy="160" rx="120" ry="80" fill="none" stroke="currentColor" stroke-width="0.5"/><ellipse cx="160" cy="160" rx="80" ry="50" fill="none" stroke="currentColor" stroke-width="1"/></svg>',
+  '<svg class="ls-motif" viewBox="0 0 200 200"><path d="M140,200 L200,140 L200,200 Z" fill="none" stroke="currentColor" stroke-width="0.5"/><circle cx="160" cy="140" r="60" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="160" cy="140" r="30" fill="none" stroke="currentColor" stroke-width="0.5"/></svg>',
+];
+
+const iconKeys = ['student', 'cheers', 'babyCarriage', 'intersect', 'piggyBank', 'cloudLightning', 'personWalk', 'crown'];
+
 const stages = [
-  { num: '01', title: 'Just Starting Out', desc: 'You\'re 18+ and on your own. A healthcare directive and financial power of attorney are the minimum — and most people don\'t have either.', href: '/life-stages/just-starting-out', icon: '🎓' },
-  { num: '02', title: 'Newly Married', desc: 'Arizona is a community property state. Marriage changes how your assets are owned, who inherits them, and what happens if you don\'t plan.', href: '/life-stages/newly-married', icon: '💍' },
-  { num: '03', title: 'Growing Family', desc: 'Kids change everything — including who needs to be protected. Guardianship, trusts for minors, and life insurance planning start here.', href: '/life-stages/growing-family', icon: '👶' },
-  { num: '04', title: 'Blended Families', desc: 'Stepchildren, prior marriages, and separate property create complexity that default Arizona law doesn\'t handle well. Planning is essential.', href: '/life-stages/blended-families', icon: '🏠' },
-  { num: '05', title: 'Peak Earning Years', desc: 'You\'re building real wealth — a business, investments, equity. Asset protection, tax planning, and succession strategies matter now.', href: '/life-stages/peak-earning-years', icon: '📈' },
-  { num: '06', title: 'Divorce or Loss', desc: 'A major life change means your entire plan needs to be reviewed. Beneficiary designations, agents, and trustees may all need to change.', href: '/life-stages/divorce-or-loss', icon: '🔄' },
-  { num: '07', title: 'Approaching Retirement', desc: 'Healthcare directives, beneficiary deed reviews, long-term care planning, and retirement account designations — the pre-retirement checklist.', href: '/life-stages/approaching-retirement', icon: '🌅' },
-  { num: '08', title: 'Legacy & Retirement', desc: 'Charitable planning, dynasty trusts, annual reviews, and the strategies that define what you leave behind and how it\'s remembered.', href: '/life-stages/legacy-and-retirement', icon: '🌳' },
+  { num: '01', title: 'Just Starting Out', desc: 'You\'re 18+ and on your own. A healthcare directive and financial power of attorney are the minimum — and most people don\'t have either.', href: '/life-stages/just-starting-out' },
+  { num: '02', title: 'Newly Married', desc: 'Arizona is a community property state. Marriage changes how your assets are owned, who inherits them, and what happens if you don\'t plan.', href: '/life-stages/newly-married' },
+  { num: '03', title: 'Growing Family', desc: 'Kids change everything — including who needs to be protected. Guardianship, trusts for minors, and life insurance planning start here.', href: '/life-stages/growing-family' },
+  { num: '04', title: 'Blended Families', desc: 'Stepchildren, prior marriages, and separate property create complexity that default Arizona law doesn\'t handle well. Planning is essential.', href: '/life-stages/blended-families' },
+  { num: '05', title: 'Peak Earning Years', desc: 'You\'re building real wealth — a business, investments, equity. Asset protection, tax planning, and succession strategies matter now.', href: '/life-stages/peak-earning-years' },
+  { num: '06', title: 'Divorce or Loss', desc: 'A major life change means your entire plan needs to be reviewed. Beneficiary designations, agents, and trustees may all need to change.', href: '/life-stages/divorce-or-loss' },
+  { num: '07', title: 'Approaching Retirement', desc: 'Healthcare directives, beneficiary deed reviews, long-term care planning, and retirement account designations — the pre-retirement checklist.', href: '/life-stages/approaching-retirement' },
+  { num: '08', title: 'Legacy & Retirement', desc: 'Charitable planning, dynasty trusts, annual reviews, and the strategies that define what you leave behind and how it\'s remembered.', href: '/life-stages/legacy-and-retirement' },
 ];
 
 const faqSchema = {
@@ -56,13 +81,14 @@ const faqSchema = {
     <div class="services-index-section">
       <div class="services-index-label">Find Your Stage</div>
       <div class="services-card-grid ls-card-grid">
-        {stages.map(s => (
-          <a href={s.href} class="services-index-card ls-card">
+        {stages.map((s, i) => (
+          <a href={s.href} class="ls-card">
             <div class="ls-card-num">{s.num}</div>
-            <div class="services-card-icon">{s.icon}</div>
+            <div class="ls-card-motif" set:html={motifs[i]} />
+            <div class="ls-card-icon" set:html={icons[iconKeys[i]]} />
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
-            <span class="services-card-link">Explore this stage &rarr;</span>
+            <span class="ls-card-link">Explore this stage</span>
           </a>
         ))}
       </div>
