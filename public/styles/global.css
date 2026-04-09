@@ -2387,17 +2387,115 @@ body.v2-home nav.scrolled .nav-link {
   grid-template-columns: 1fr !important;
 }
 .ls-card {
+  display: block;
   position: relative;
+  padding: 28px 24px;
+  background: white;
+  border: 1px solid var(--sand, #EDE8DF);
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s;
+}
+.ls-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  border-left-color: var(--sage);
 }
 .ls-card-num {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   color: var(--sage);
-  opacity: 0.5;
+  opacity: 0.4;
   position: absolute;
   top: 14px;
   right: 16px;
+  transition: opacity 0.3s;
+}
+.ls-card:hover .ls-card-num { opacity: 0.7; }
+
+/* Phosphor icon */
+.ls-card-icon {
+  width: 30px;
+  height: 30px;
+  color: var(--sage);
+  margin-bottom: 14px;
+  transition: color 0.3s;
+}
+.ls-card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.ls-card:hover .ls-card-icon {
+  color: var(--bronze);
+}
+
+/* Background motif */
+.ls-card-motif {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 160px;
+  height: 160px;
+  color: var(--sage);
+  opacity: 0.04;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.ls-card-motif svg {
+  width: 100%;
+  height: 100%;
+}
+.ls-card:hover .ls-card-motif {
+  opacity: 0.09;
+}
+
+/* Card typography */
+.ls-card h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+.ls-card:hover h3 { color: var(--sage); }
+.ls-card p {
+  font-size: 0.82rem;
+  color: var(--mid-gray);
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card link */
+.ls-card-link {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s, color 0.3s;
+}
+.ls-card-link::after {
+  content: '\2192';
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ls-card:hover .ls-card-link {
+  color: var(--sage-dark);
+  gap: 8px;
+}
+.ls-card:hover .ls-card-link::after {
+  transform: translateX(2px);
 }
 
 /* Mobile hint for scrollable timeline */
