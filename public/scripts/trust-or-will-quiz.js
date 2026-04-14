@@ -1,0 +1,516 @@
+/* ════════════════════════════════════════════
+   QUESTION BANK — conditional via show()
+   ════════════════════════════════════════════ */
+const QS = [
+  {
+    id:'stage', label:'Let\u2019s Start Here',
+    text:'Where are you in life right now?',
+    sub:'This shapes everything else we\u2019ll ask.',
+    multi:false,
+    opts:[
+      {t:'Just getting started',d:'Building career, maybe buying a first home',tags:['young']},
+      {t:'Growing family',d:'Kids under 18, accumulating assets',tags:['family','kids']},
+      {t:'Established',d:'Kids are grown, real assets in place',tags:['established']},
+      {t:'Nearing or in retirement',d:'Focused on preserving and transferring wealth',tags:['retirement']},
+    ]
+  },
+  {
+    id:'family', label:'Your Family',
+    text:'What does your family look like?',
+    sub:'This is the single biggest factor in which plan fits.',
+    multi:false,
+    opts:[
+      {t:'Single, no children',tags:['single','no_kids']},
+      {t:'Married or partnered \u2014 first marriage for both',tags:['married','first_marriage']},
+      {t:'Blended family',d:'Children from a prior relationship on either side',tags:['blended']},
+      {t:'Single parent',tags:['single_parent','kids']},
+    ]
+  },
+  {
+    id:'kids', label:'Your Children',
+    text:'Tell us about your kids.',
+    sub:'Guardianship and inheritance rules depend on this.',
+    multi:false,
+    show:()=>hasTags('kids','family','blended','single_parent') && !hasTags('no_kids'),
+    opts:[
+      {t:'All minor children (under 18)',tags:['minor_kids']},
+      {t:'Mix of minor and adult children',tags:['minor_kids','adult_kids']},
+      {t:'All adult children (18+)',tags:['adult_kids']},
+      {t:'No children',tags:['no_kids']},
+    ]
+  },
+  {
+    id:'assets', label:'Your Assets',
+    text:'What are you working with?',
+    sub:'Select everything that applies.',
+    multi:true,
+    opts:[
+      {t:'A home or real estate',tags:['real_estate']},
+      {t:'Retirement accounts or investments over $100K',tags:['investments']},
+      {t:'A business or ownership interest',tags:['business']},
+      {t:'Not much yet \u2014 but I want a plan in place',tags:['minimal_assets']},
+    ]
+  },
+  {
+    id:'property', label:'Your Property',
+    text:'A bit more about your real estate:',
+    sub:'Multiple properties or out-of-state ownership changes things significantly.',
+    multi:false,
+    show:()=>hasTags('real_estate'),
+    opts:[
+      {t:'One home in Arizona',tags:['single_property_az']},
+      {t:'Multiple properties, all in Arizona',tags:['multi_property_az']},
+      {t:'Property in more than one state',tags:['multi_state']},
+    ]
+  },
+  {
+    id:'concern', label:'Your Priority',
+    text:'What matters most to you?',
+    sub:'Select all that apply.',
+    multi:true,
+    freeform:true,
+    freeformPlaceholder:'Something else on your mind? (optional)',
+    opts:[
+      {t:'Keeping things simple and affordable',d:'Get the basics done right without overcomplicating it',tags:['simple']},
+      {t:'Avoiding probate and keeping things private',d:'My family shouldn\u2019t have to go through court',tags:['avoid_probate']},
+      {t:'Protecting assets from creditors, lawsuits, or divorce',d:'I want to shield what I\u2019ve built',tags:['protection']},
+      {t:'Controlling how and when my kids inherit',d:'Not everything at 18 \u2014 I want conditions',tags:['inheritance_control']},
+    ]
+  },
+  {
+    id:'blended_q', label:'Blended Family',
+    text:'With a blended family, which concerns hit closest to home?',
+    sub:'Select all that apply.',
+    multi:true,
+    freeform:true,
+    freeformPlaceholder:'Any other concerns specific to your situation? (optional)',
+    show:()=>hasTags('blended'),
+    opts:[
+      {t:'Making sure my kids from a prior relationship are protected',d:'Even after I\u2019m gone and my spouse is still living',tags:['protect_prior_kids']},
+      {t:'Providing for my current spouse without disinheriting my children',d:'Both sides need to be taken care of',tags:['balance_spouse_kids']},
+      {t:'Avoiding conflict between my spouse and my children',d:'I can already see the tension',tags:['avoid_conflict']},
+    ]
+  },
+  {
+    id:'experience', label:'Your History',
+    text:'Where are you in the planning process?',
+    sub:'Select all that apply.',
+    multi:true,
+    opts:[
+      {t:'This is my first time thinking about it',tags:['first_time']},
+      {t:'I started something online but didn\u2019t finish',tags:['diy_incomplete']},
+      {t:'I have a will but nothing else',tags:['has_will']},
+      {t:'I have documents but they\u2019re outdated or my life has changed',tags:['needs_update']},
+      {t:'I\u2019ve spoken to another attorney but want a second opinion',tags:['second_opinion']},
+    ]
+  },
+];
+
+/* ════════════════════
+   STATE
+   ════════════════════ */
+let ans = {};       // id -> number | number[]
+let freeText = {};  // id -> string (freeform responses)
+let path = [];
+let pIdx = 0;
+let tags = new Set();
+
+function hasTags(...ts){ return ts.some(t=>tags.has(t)); }
+
+function rebuildTags(){
+  tags = new Set();
+  QS.forEach(q=>{
+    const a=ans[q.id]; if(a==null) return;
+    (Array.isArray(a)?a:[a]).forEach(i=> q.opts[i].tags.forEach(t=>tags.add(t)));
+  });
+}
+
+function rebuildPath(){
+  path = QS.filter(q=>!q.show||q.show()).map(q=>q.id);
+}
+
+/* ════════════════════
+   RENDER HELPERS
+   ════════════════════ */
+const $=id=>document.getElementById(id);
+const prog=$('prog'), pb=$('pb'), pn=$('pn'), box=$('box');
+
+function showIntro(){
+  prog.classList.remove('on');
+  box.innerHTML=`
+  <div class="slide on" style="animation:scaleUp .4s ease .1s both">
+    <div class="card intro">
+      <div class="intro-mark"></div>
+      <h1>Do You Need a Trust \u2014 or Is a Will Enough?</h1>
+      <p>Most people don\u2019t know. Answer a few quick questions about your family, your assets, and your goals \u2014 and we\u2019ll show you exactly which path makes sense and why.</p>
+      <p class="meta">5\u20137 questions \u00b7 Under 2 minutes</p>
+      <button class="btn btn-go" style="width:100%;max-width:260px;margin:0 auto;display:block" onclick="begin()">Find Out \u2192</button>
+    </div>
+  </div>`;
+}
+
+function begin(){
+  ans={}; freeText={}; tags=new Set();
+  rebuildPath(); pIdx=0;
+  prog.classList.add('on');
+  renderQ();
+}
+
+function renderQ(){
+  const qid=path[pIdx], q=QS.find(x=>x.id===qid), total=path.length;
+  pn.textContent=`${pIdx+1} of ${total}`;
+  pb.style.width=`${(pIdx/total)*100}%`;
+
+  const prev=ans[q.id], prevFree=freeText[q.id]||'';
+
+  let h=`<div class="slide on"><div class="card qc">
+    <div class="q-lab">${q.label}</div>
+    <h2 class="q-txt">${q.text}</h2>
+    ${q.sub?`<p class="q-sub">${q.sub}</p>`:''}
+    <div class="opts">`;
+
+  q.opts.forEach((o,i)=>{
+    const sel=q.multi?(Array.isArray(prev)&&prev.includes(i)):(prev===i);
+    h+=`<button class="opt${q.multi?' multi':''}${sel?' sel':''}" data-i="${i}" onclick="${q.multi?`mS(${i})`:`sS(${i})`}">
+      <div class="mk"></div>
+      <div class="opt-text">${o.t}${o.d?`<span class="opt-det">${o.d}</span>`:''}</div>
+    </button>`;
+  });
+  h+=`</div>`;
+  if(q.multi) h+=`<div class="mhint">Select all that apply</div>`;
+  if(q.freeform) h+=`<textarea class="freeform" id="ff" placeholder="${q.freeformPlaceholder||'Anything else? (optional)'}" oninput="onFree()">${prevFree}</textarea>`;
+
+  h+=`<div class="nav">`;
+  if(pIdx>0) h+=`<button class="btn btn-bk" onclick="back()">Back</button>`;
+  h+=`<button class="btn btn-go" id="nxt" ${!canGo(q)?'disabled':''} onclick="next()">${pIdx===total-1?'See My Results':'Continue'}</button>`;
+  h+=`</div></div></div>`;
+  box.innerHTML=h;
+}
+
+function canGo(q){
+  const a=ans[q.id];
+  if(q.multi) return Array.isArray(a)&&a.length>0;
+  return a!=null;
+}
+
+function sS(i){
+  ans[path[pIdx]]=i; rebuildTags(); rebuildPath();
+  document.querySelectorAll('.opt').forEach((b,j)=>b.classList.toggle('sel',j===i));
+  $('nxt').disabled=false;
+  setTimeout(next,280);
+}
+
+function mS(i){
+  const qid=path[pIdx];
+  if(!ans[qid]) ans[qid]=[];
+  const a=ans[qid], p=a.indexOf(i);
+  if(p>-1) a.splice(p,1); else a.push(i);
+  rebuildTags(); rebuildPath();
+  document.querySelectorAll('.opt').forEach(b=>{
+    b.classList.toggle('sel',a.includes(+b.dataset.i));
+  });
+  $('nxt').disabled=a.length===0;
+}
+
+function onFree(){ freeText[path[pIdx]]=$('ff').value; }
+
+function back(){ if(pIdx>0){ pIdx--; renderQ(); } }
+
+function next(){
+  if(pIdx<path.length-1){
+    pIdx++;
+    while(pIdx<path.length){
+      const q=QS.find(x=>x.id===path[pIdx]);
+      if(!q.show||q.show()) break;
+      pIdx++;
+    }
+    if(pIdx>=path.length){ showResult(); return; }
+    renderQ();
+  } else showResult();
+}
+
+/* ════════════════════════════════════════
+   RESULT ENGINE
+   ════════════════════════════════════════ */
+function showResult(){
+  pb.style.width='100%'; pn.textContent='Complete';
+  const t=tags;
+
+  // ── Trust scoring ──
+  let ts=0, reasons=[];
+
+  if(t.has('blended')){
+    ts+=3;
+    reasons.push('<strong>Blended family.</strong> Without a trust, your surviving spouse could inherit everything \u2014 and your children from a prior relationship could be left out entirely. A trust with QTIP provisions solves this.');
+  }
+  if(t.has('avoid_probate')){
+    ts+=2;
+    reasons.push('<strong>Probate avoidance.</strong> A will goes through probate \u2014 a public court process that takes months and costs your family money. A trust transfers assets privately and immediately.');
+  }
+  if(t.has('inheritance_control')||t.has('minor_kids')){
+    ts+=2;
+    reasons.push('<strong>Inheritance control.</strong> A will distributes assets outright. A trust lets you set conditions \u2014 like holding funds until age 25 or 35, or releasing them in stages.');
+  }
+  if(t.has('multi_state')){
+    ts+=3;
+    reasons.push('<strong>Property in multiple states.</strong> Without a trust, your family would need to open a separate probate case in <em>every</em> state where you own property. A trust avoids all of them.');
+  }
+  if(t.has('multi_property_az')){
+    ts+=1;
+    reasons.push('<strong>Multiple properties.</strong> A beneficiary deed can cover one property, but managing several through separate deeds gets complicated. A trust consolidates everything.');
+  }
+  if(t.has('business')){
+    ts+=2;
+    reasons.push('<strong>Business ownership.</strong> A trust allows seamless transfer of business interests without court involvement \u2014 keeping the business running while your estate is settled.');
+  }
+  if(t.has('protection')){
+    ts+=2;
+    reasons.push('<strong>Asset protection goals.</strong> A trust-based plan combined with proper LLC structuring creates layers of protection a will cannot offer.');
+  }
+  if(t.has('retirement')||t.has('established')){
+    ts+=1;
+    reasons.push('<strong>Incapacity planning.</strong> A trust also protects you during your lifetime \u2014 if you become incapacitated, your trustee manages everything without court guardianship.');
+  }
+  if(t.has('investments')) ts+=1;
+
+  const recTrust=ts>=2;
+
+  let hl,sl;
+  if(ts>=5){ hl='A Trust-Based Plan Is the Clear Choice for You'; sl='Based on your answers, a will alone would leave significant gaps. Here\u2019s why.'; }
+  else if(ts>=2){ hl='You\u2019d Likely Benefit from a Trust \u2014 Here\u2019s Why'; sl='A will could cover the basics, but your situation has factors that make a trust meaningfully better.'; }
+  else { hl='A Will May Be All You Need Right Now'; sl='Your situation is straightforward enough that a will plus a beneficiary deed could work well. Here\u2019s the full picture.'; }
+
+  // ── Comparison icons ──
+  const iy=`<svg class="ic ic-y" viewBox="0 0 16 16"><path d="M6.5 11.5L3 8l1-1 2.5 2.5L12 4l1 1z" fill="currentColor"/></svg>`;
+  const ix=`<svg class="ic ic-n" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>`;
+  const im=`<svg class="ic ic-m" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg>`;
+
+  // ── Dynamic will bullets based on answers ──
+  const wPros=[];
+  if(t.has('kids')||t.has('minor_kids')||t.has('family')||t.has('single_parent')||t.has('blended'))
+    wPros.push({i:iy,t:'Names guardians for minor children'});
+  wPros.push({i:iy,t:'Simpler and less expensive upfront'});
+  wPros.push({i:ix,t:'Goes through probate (public, slow, costly)'});
+  wPros.push({i:ix,t:'No incapacity protection'});
+  if(t.has('inheritance_control')||t.has('minor_kids'))
+    wPros.push({i:ix,t:'Assets distribute outright \u2014 no conditions'});
+  if(t.has('protection'))
+    wPros.push({i:ix,t:'No asset protection for beneficiaries'});
+  if(t.has('multi_state'))
+    wPros.push({i:ix,t:'Requires separate probate in each state you own property'});
+
+  // ── Dynamic trust bullets based on answers ──
+  const tPros=[];
+  tPros.push({i:iy,t:'Avoids probate \u2014 maintains privacy and immediate control to heirs'});
+  if(t.has('inheritance_control')||t.has('minor_kids')||t.has('blended'))
+    tPros.push({i:iy,t:'Controls when and how beneficiaries inherit'});
+  tPros.push({i:iy,t:'Protects you during incapacity'});
+  tPros.push({i:iy,t:'Provides asset protection for beneficiaries'});
+  if(t.has('multi_state'))
+    tPros.push({i:iy,t:'Handles multi-state property seamlessly'});
+  if(t.has('business'))
+    tPros.push({i:iy,t:'Allows seamless transfer of business interests'});
+  if(t.has('blended'))
+    tPros.push({i:iy,t:'Protects children from prior relationships'});
+  tPros.push({i:im,t:'Higher initial investment \u2014 but often saves money overall'});
+
+  // ── SVG icons for docs ──
+  const DS={
+    trust:`<svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>`,
+    will:`<svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>`,
+    poa:`<svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5"><path d="M12 2a5 5 0 015 5v3H7V7a5 5 0 015-5zM5 10h14v10a2 2 0 01-2 2H7a2 2 0 01-2-2V10z"/></svg>`,
+    hcd:`<svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path d="M12 8v4l3 3"/></svg>`,
+    mhd:`<svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5"><path d="M12 2a7 7 0 017 7c0 3-2 5-4 6.5V18H9v-2.5C7 14 5 12 5 9a7 7 0 017-7z"/><path d="M9 22h6"/></svg>`,
+    deed:`<svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>`,
+    llc:`<svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>`,
+  };
+
+  const isMarried=t.has('married')||t.has('first_marriage')||t.has('blended');
+
+  // Build doc list as data, then render both formats
+  let docList=[];
+  if(recTrust){
+    const pk='Trust Package';
+    docList.push({svg:DS.trust,n:'Revocable Living Trust',d:'Core of your plan',bt:'pkg',bl:pk});
+    docList.push({svg:DS.will,n:'Pour-Over Will',d:'Safety net + guardians',bt:'pkg',bl:pk});
+    docList.push({svg:DS.poa,n:'Financial POA',d:'',bt:'inc',bl:'Included with '+pk});
+    docList.push({svg:DS.hcd,n:'Healthcare Directive',d:'',bt:'inc',bl:'Included with '+pk});
+    docList.push({svg:DS.mhd,n:'Mental Health POA',d:'',bt:'inc',bl:'Included with '+pk});
+  } else {
+    const pk='Will Package';
+    docList.push({svg:DS.will,n:'Last Will & Testament',d:'Your primary document',bt:'pkg',bl:pk});
+    if(t.has('real_estate')) docList.push({svg:DS.deed,n:'Beneficiary Deed',d:'Transfers home outside probate',bt:'pkg',bl:pk});
+    docList.push({svg:DS.poa,n:'Financial POA',d:'',bt:'inc',bl:'Included with '+pk});
+    docList.push({svg:DS.hcd,n:'Healthcare Directive',d:'',bt:'inc',bl:'Included with '+pk});
+    docList.push({svg:DS.mhd,n:'Mental Health POA',d:'',bt:'inc',bl:'Included with '+pk});
+  }
+  if(t.has('business')||t.has('protection')) docList.push({svg:DS.llc,n:'LLC Structuring',d:'Asset protection layer',bt:'inc',bl:'Add-On'});
+
+  // Desktop: horizontal scroll cards
+  const docs=docList.map(x=>dc(x.svg,x.n,x.d,x.bt,x.bl)).join('');
+  // Mobile: compact rows
+  const docsMobile=docList.map(x=>dcm(x.svg,x.n,x.d,x.bt,x.bl)).join('');
+
+  // ── Reasons HTML ──
+  let rHTML='';
+  if(reasons.length&&recTrust){
+    rHTML=`<div style="margin-bottom:20px"><h3 class="sec-h">Based on Your Answers, Here\u2019s Why a Trust Makes Sense</h3><ul class="rlist">`;
+    reasons.slice(0,4).forEach((r,i)=>{ rHTML+=`<li><div class="rnum">${i+1}</div><div class="rtxt">${r}</div></li>`; });
+    rHTML+=`</ul></div>`;
+  }
+
+  // ── Insights ──
+  let insHTML='';
+  if(!recTrust){
+    insHTML+=`<div class="ins"><p><strong>Worth knowing:</strong> A will plus a beneficiary deed is a legitimate, cost-effective plan for many Arizonans. The beneficiary deed transfers your home outside of probate, and the will covers everything else. Just know that a will still goes through probate for any asset \u2014 like a bank account \u2014 without a named beneficiary. Make sure all accounts have up-to-date beneficiary designations assigned.</p></div>`;
+    if(t.has('real_estate')||t.has('investments'))
+      insHTML+=`<div class="ins"><p><strong>One thing to watch:</strong> As your life gets more complex \u2014 more property, more assets, remarriage, grandchildren \u2014 the case for a trust gets stronger. Many of our clients start with a will and upgrade to a trust within a few years. We build every plan with that future in mind.</p></div>`;
+  }
+  if(recTrust&&t.has('blended'))
+    insHTML+=`<div class="ins"><p><strong>The blended family scenario:</strong> Without a trust, Arizona law could give your surviving spouse control of everything \u2014 leaving your children from a prior relationship with no guarantee of inheritance. A <strong>QTIP trust</strong> solves this: it provides for your spouse during their lifetime while ensuring your children receive their share after.</p></div>`;
+  else if(recTrust&&t.has('minor_kids'))
+    insHTML+=`<div class="ins"><p><strong>About your kids:</strong> Without a trust, any inheritance goes to your children outright when they turn 18. A trust lets you set the terms \u2014 holding funds until 25 or 35, releasing them in stages, or tying distributions to milestones. You decide \u2014 not a judge.</p></div>`;
+  else if(recTrust)
+    insHTML+=`<div class="ins"><p><strong>The real value of a trust:</strong> It\u2019s not just about avoiding probate. A trust gives you a single, private, flexible document that manages your assets during your life, protects you if you\u2019re incapacitated, and transfers everything on your terms when the time comes.</p></div>`;
+
+  // ── Spouse note ──
+  let spouseHTML='';
+  if(isMarried){
+    const pkName=recTrust?'Trust Package':'Will Package';
+    spouseHTML=`<div class="spouse-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <p><strong>Spouse documents included at no extra cost:</strong> Your ${pkName} includes Financial POA, Healthcare Directive, and Mental Health POA for your spouse \u2014 so both of you are fully covered.</p>
+    </div>`;
+  }
+
+  // ── Experience-based note ──
+  let expHTML='';
+  if(t.has('has_will')||t.has('needs_update'))
+    expHTML=`<p style="font-size:12px;color:var(--charcoal-light);line-height:1.6;margin-bottom:14px">Since you already have existing documents, we\u2019ll start with a review. Often we can build on what you have rather than starting from scratch \u2014 saving time and money.</p>`;
+  if(t.has('first_time')||t.has('diy_incomplete'))
+    expHTML=`<p style="font-size:12px;color:var(--charcoal-light);line-height:1.6;margin-bottom:14px">First time? No jargon, no pressure. We walk you through every decision so you understand exactly what you\u2019re signing and why.</p>`;
+
+  // ── Build Cal.com URL with quiz data ──
+  const calURL = buildCalURL(recTrust);
+
+  // ── Assemble ──
+  box.innerHTML=`
+  <div class="slide on">
+    <div class="res card">
+      <div class="res-head">
+        <div class="res-tag">Based On Your Answers</div>
+        <h2 class="res-h">${hl}</h2>
+        <p class="res-sub">${sl}</p>
+      </div>
+      <div class="res-body">
+        <div class="cmp">
+          <div class="cmp-col col-w">
+            <span class="col-badge">Will Path</span>
+            <div class="col-h">Will + Beneficiary Deed</div>
+            <div class="col-inc">Includes POAs & healthcare directives</div>
+            <ul class="col-items">${wPros.map(p=>`<li>${p.i}<span>${p.t}</span></li>`).join('')}</ul>
+          </div>
+          <div class="cmp-col col-t">
+            ${recTrust?'<div class="col-flag">Recommended</div>':''}
+            <span class="col-badge">Trust Path</span>
+            <div class="col-h">Revocable Living Trust</div>
+            <div class="col-inc">Includes pour-over will, POAs & directives</div>
+            <ul class="col-items">${tPros.map(p=>`<li>${p.i}<span>${p.t}</span></li>`).join('')}</ul>
+          </div>
+        </div>
+        ${rHTML}
+        ${insHTML}
+        <h3 class="sec-h">Your Recommended Documents</h3>
+        <div class="drow">${docs}</div>
+        <div class="drow-mobile">${docsMobile}</div>
+        ${spouseHTML}
+        ${expHTML}
+        <div class="cta">
+          <a href="${calURL}" target="_blank" class="cta-btn">
+            Book a Free Consultation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <p class="cta-note">Free 30-minute call \u00b7 No obligation \u00b7 We\u2019ll review your results together</p>
+        </div>
+      </div>
+    </div>
+    <p class="legal">This quiz provides general educational information and does not constitute legal advice. Every situation is unique.<br>\u00a9 ${new Date().getFullYear()} Mesa Estate Planning \u00b7 Tucker Estate Law, PLLC</p>
+  </div>`;
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ── Doc card builder (desktop) ── */
+function dc(svg,name,note,btype,blabel){
+  const bc=btype==='pkg'?'dbadge dbadge-pkg':'dbadge dbadge-inc';
+  return `<div class="dcard">
+    <div class="dcard-iw">${svg}</div>
+    <div class="dcard-n">${name}</div>
+    ${note?`<div class="dcard-d">${note}</div>`:''}
+    <span class="${bc}">${blabel}</span>
+  </div>`;
+}
+
+/* ── Doc row builder (mobile) ── */
+function dcm(svg,name,note,btype,blabel){
+  const bc=btype==='pkg'?'drow-m-badge mbpkg':'drow-m-badge mbinc';
+  return `<div class="drow-m-item">
+    <div class="drow-m-iw">${svg}</div>
+    <div class="drow-m-body">
+      <div class="drow-m-n">${name}</div>
+      ${note?`<div class="drow-m-d">${note}</div>`:''}
+    </div>
+    <span class="${bc}">${blabel}</span>
+  </div>`;
+}
+
+/* ════════════════════════════════════════
+   CAL.COM URL BUILDER
+   Pre-fills the booking form notes field
+   with a structured quiz summary.
+   Cal.com docs: name param should come first.
+   ════════════════════════════════════════ */
+function buildCalURL(recTrust){
+  const base='https://cal.com/mckay-tucker-6xuf6e/free-30-minute-estate-plan-consultation';
+
+  // Build a human-readable summary for the notes field
+  const lines=[];
+  lines.push('=== ESTATE PLANNING QUIZ RESULTS ===');
+  lines.push('Recommendation: '+(recTrust?'Trust-Based Plan':'Will + Beneficiary Deed'));
+  lines.push('Trust Score: '+calcTrustScore()+' (threshold: 2)');
+  lines.push('');
+
+  QS.forEach(q=>{
+    const a=ans[q.id]; if(a==null) return;
+    const picked=Array.isArray(a)?a.map(i=>q.opts[i].t):[q.opts[a].t];
+    lines.push(q.label+': '+picked.join(', '));
+    // Include freeform for this question if present
+    const ft=freeText[q.id]?.trim();
+    if(ft) lines.push('  \u2192 '+ft);
+  });
+
+  lines.push('');
+  lines.push('Completed: '+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}));
+
+  const summary=lines.join('\n');
+
+  // Cal.com quirk: name param should be first or others may be ignored
+  return base+'?name=&notes='+encodeURIComponent(summary);
+}
+
+function calcTrustScore(){
+  let s=0;
+  if(tags.has('blended')) s+=3;
+  if(tags.has('avoid_probate')) s+=2;
+  if(tags.has('inheritance_control')||tags.has('minor_kids')) s+=2;
+  if(tags.has('multi_state')) s+=3;
+  if(tags.has('multi_property_az')) s+=1;
+  if(tags.has('business')) s+=2;
+  if(tags.has('protection')) s+=2;
+  if(tags.has('retirement')||tags.has('established')) s+=1;
+  if(tags.has('investments')) s+=1;
+  return s;
+}
+
+/* ── Init ── */
+showIntro();

@@ -1,0 +1,295 @@
+---
+/**
+ * Lead Magnet Carousel
+ * ─────────────────────────────────────────────
+ * Place this file at: src/components/LeadCarousel.astro
+ *
+ * Usage in your homepage (src/pages/index.astro):
+ *   Replace the existing scorecard banner section with:
+ *
+ *   import LeadCarousel from '../components/LeadCarousel.astro';
+ *   <LeadCarousel />
+ *
+ * Each slide has a different background color and links
+ * to a different lead magnet / tool / content page.
+ */
+---
+
+<section class="lead-carousel" aria-label="Free estate planning tools">
+  <div class="lc-track" id="lcTrack">
+
+    <!-- Slide 1: Trust or Will Quiz -->
+    <div class="lc-slide lc-sage">
+      <div class="lc-content">
+        <span class="lc-tag">Interactive Quiz</span>
+        <h2 class="lc-heading">Do you need a trust — or is a will enough?</h2>
+        <p class="lc-desc">Answer 5–7 quick questions and get a personalized recommendation for your family.</p>
+        <a href="/tools/trust-or-will-quiz" class="lc-btn lc-btn-light">
+          Take the Quiz
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <span class="lc-time">Under 2 minutes</span>
+      </div>
+    </div>
+
+    <!-- Slide 2: Estate Plan Scorecard -->
+    <div class="lc-slide lc-charcoal">
+      <div class="lc-content">
+        <span class="lc-tag">Scorecard</span>
+        <h2 class="lc-heading">How prepared is your estate plan?</h2>
+        <p class="lc-desc">Get a personalized assessment of where you stand — and what you might be missing.</p>
+        <a href="/tools/estate-plan-scorecard" class="lc-btn lc-btn-light">
+          Get Your Scorecard
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <span class="lc-time">About 3 minutes</span>
+      </div>
+    </div>
+
+    <!-- Slide 3: Blended Families Guide -->
+    <div class="lc-slide lc-bronze">
+      <div class="lc-content">
+        <span class="lc-tag">Guide</span>
+        <h2 class="lc-heading">Blended family? Here's what you need to know.</h2>
+        <p class="lc-desc">The #1 mistake blended families make with estate planning — and how to avoid it.</p>
+        <a href="/who-we-serve/blended-families" class="lc-btn lc-btn-light">
+          Read the Guide
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <span class="lc-time">5 minute read</span>
+      </div>
+    </div>
+
+    <!-- Slide 4: What Happens Without a Plan -->
+    <div class="lc-slide lc-dark">
+      <div class="lc-content">
+        <span class="lc-tag">Article</span>
+        <h2 class="lc-heading">What happens if you die without a plan in Arizona?</h2>
+        <p class="lc-desc">Arizona's default rules might surprise you. Find out who gets your assets — and who doesn't.</p>
+        <a href="/resources/what-happens-without-estate-plan" class="lc-btn lc-btn-light">
+          Learn More
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <span class="lc-time">4 minute read</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Nav dots -->
+  <div class="lc-dots" id="lcDots">
+    <button class="lc-dot active" data-i="0" aria-label="Slide 1"></button>
+    <button class="lc-dot" data-i="1" aria-label="Slide 2"></button>
+    <button class="lc-dot" data-i="2" aria-label="Slide 3"></button>
+    <button class="lc-dot" data-i="3" aria-label="Slide 4"></button>
+  </div>
+
+  <!-- Arrows -->
+  <button class="lc-arrow lc-prev" id="lcPrev" aria-label="Previous slide">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="lc-arrow lc-next" id="lcNext" aria-label="Next slide">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</section>
+
+<style>
+  .lead-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    max-width: 100%;
+  }
+
+  /* Track */
+  .lc-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  /* Slide */
+  .lc-slide {
+    min-width: 100%;
+    padding: 64px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Color variants */
+  .lc-sage { background: #5C7A6B; }
+  .lc-charcoal { background: #3a3a3a; }
+  .lc-bronze { background: #8a6d3b; }
+  .lc-dark { background: #2a3a2e; }
+
+  .lc-content {
+    max-width: 600px;
+    text-align: center;
+    color: white;
+  }
+
+  .lc-tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.15);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .lc-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: white;
+  }
+
+  .lc-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 24px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .lc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .lc-btn-light {
+    background: white;
+    color: #2a2a2a;
+  }
+  .lc-btn-light:hover {
+    background: #FAF8F4;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .lc-time {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 14px;
+  }
+
+  /* Dots */
+  .lc-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 0;
+    background: #FAF8F4;
+  }
+  .lc-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #d0cdc6;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+  }
+  .lc-dot.active {
+    background: #5C7A6B;
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* Arrows */
+  .lc-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+  }
+  .lc-arrow:hover {
+    background: rgba(255,255,255,0.3);
+  }
+  .lc-prev { left: 16px; }
+  .lc-next { right: 16px; }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .lc-slide { padding: 48px 20px; }
+    .lc-heading { font-size: 26px; }
+    .lc-desc { font-size: 14px; }
+    .lc-arrow { width: 32px; height: 32px; }
+    .lc-prev { left: 8px; }
+    .lc-next { right: 8px; }
+  }
+</style>
+
+<script is:inline>
+(function() {
+  const track = document.getElementById('lcTrack');
+  const dots = document.querySelectorAll('.lc-dot');
+  const prev = document.getElementById('lcPrev');
+  const next = document.getElementById('lcNext');
+  const slides = track.children;
+  let current = 0;
+  const total = slides.length;
+  let autoTimer;
+
+  function goTo(i) {
+    current = ((i % total) + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, j) => d.classList.toggle('active', j === current));
+  }
+
+  prev.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+  next.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); resetAuto(); }));
+
+  // Touch/swipe support
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      goTo(diff > 0 ? current + 1 : current - 1);
+      resetAuto();
+    }
+  }, { passive: true });
+
+  // Auto-advance every 6 seconds
+  function startAuto() { autoTimer = setInterval(() => goTo(current + 1), 6000); }
+  function resetAuto() { clearInterval(autoTimer); startAuto(); }
+  startAuto();
+})();
+</script>
