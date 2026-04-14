@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estate Plan Scorecard | Mesa Estate Planning</title>
+  <meta name="description" content="Answer a few quick questions to discover what estate plan fits your life — and what it might cost. Free, no login required." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #FAF8F4;
+      color: #2D3748;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+    input::placeholder { color: #A0AEC0; }
+
+    .header { background: #fff; border-bottom: 1px solid #E8E4DE; padding: 14px 24px; text-align: center; }
+    .header-brand { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: #5C7A6B; letter-spacing: 0.02em; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 20px 60px; }
+
+    /* Fade transition */
+    .step-content { opacity: 0; transform: translateY(12px); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .step-content.visible { opacity: 1; transform: translateY(0); }
+
+    /* Typography */
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: #1A202C; text-align: center; margin: 0 0 14px; }
+    .page-subtitle { font-size: 16px; color: #718096; text-align: center; margin: 0 0 6px; }
+    .page-meta { font-size: 13px; color: #A0AEC0; text-align: center; margin: 0 0 32px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: #1A202C; margin: 0 0 6px; }
+    .section-desc { font-size: 14px; color: #718096; margin: 0 0 20px; }
+    .field-label { font-size: 13px; font-weight: 600; color: #4A5568; margin-bottom: 8px; }
+
+    /* Progress bar */
+    .progress { display: flex; gap: 4px; margin-bottom: 24px; }
+    .progress-seg { flex: 1; height: 4px; border-radius: 2px; background: #E2E8F0; transition: background 0.3s; }
+    .progress-seg.active { background: #5C7A6B; }
+
+    /* Radio / Checkbox options */
+    .option-btn {
+      display: flex; flex-direction: column; width: 100%; text-align: left;
+      padding: 16px 18px; border-radius: 10px; cursor: pointer;
+      border: 1px solid #E2E8F0; background: #fff;
+      font-family: 'DM Sans', sans-serif; outline: none; margin-bottom: 8px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .option-btn:hover { border-color: #5C7A6B; }
+    .option-btn.selected { border: 2px solid #5C7A6B; background: #EDF7F0; }
+    .option-btn .opt-title { font-size: 15px; font-weight: 600; color: #1A202C; }
+    .option-btn .opt-sub { font-size: 13px; color: #718096; margin-top: 2px; }
+
+    .check-btn {
+      display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+      padding: 14px 16px; border-radius: 10px; cursor: pointer;
+      border: 1px solid #E2E8F0; background: #fff;
+      font-size: 15px; color: #1A202C; outline: none; margin-bottom: 8px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .check-btn:hover { border-color: #5C7A6B; }
+    .check-btn.checked { border: 2px solid #5C7A6B; background: #EDF7F0; }
+    .check-box {
+      width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0;
+      border: 2px solid #CBD5E0; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .check-btn.checked .check-box { border: none; background: #5C7A6B; }
+
+    /* Buttons */
+    .btn-primary {
+      display: block; width: 100%; padding: 16px; margin-top: 12px;
+      background: #5C7A6B; color: #fff; font-size: 16px; font-weight: 700;
+      border: none; border-radius: 10px; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #4A6858; }
+    .btn-primary:disabled { background: #A0AEC0; cursor: not-allowed; }
+
+    .btn-back {
+      background: none; border: none; cursor: pointer;
+      font-size: 14px; color: #718096; padding: 0; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .btn-back:hover { color: #4A5568; }
+
+    /* Results page */
+    .results-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: #1A202C; text-align: center; margin: 0 0 12px; }
+    .badge { display: inline-block; padding: 6px 22px; border-radius: 6px; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .card { background: #fff; border-radius: 12px; border: 1px solid #E8E4DE; padding: 24px; }
+    .r-h2 { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: #1A202C; margin: 0 0 16px; }
+
+    /* Insight rows */
+    .insight-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+    .insight-icon { flex-shrink: 0; margin-top: 1px; }
+    .insight-heard { font-size: 13px; color: #718096; margin-bottom: 2px; }
+    .insight-prot { font-size: 15px; color: #1A202C; display: flex; gap: 8px; align-items: flex-start; }
+
+    /* Risk section */
+    .risk-card { background: #FFFDF5; border-radius: 12px; border: 1px solid #F0E9D6; padding: 22px 24px; }
+    .risk-h2 { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: #7C6A3A; margin: 0 0 14px; }
+    .risk-item { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: #6B5D3E; line-height: 1.55; margin-bottom: 10px; }
+
+    /* Fee section */
+    .fee-block { background: #2D3748; border-radius: 12px 12px 0 0; padding: 24px 24px 20px; color: #fff; }
+    .fee-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #A0AEC0; margin-bottom: 4px; }
+    .fee-big { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; }
+    .fee-est { font-size: 14px; font-weight: 400; color: #A0AEC0; margin-left: 8px; }
+    .fee-cards { display: flex; gap: 10px; margin-bottom: 14px; }
+    .fee-card { flex: 1; padding: 14px 16px; border-radius: 8px; background: rgba(255,255,255,0.07); }
+    .fee-card-label { font-size: 11px; color: #A0AEC0; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .fee-card-val { font-size: 26px; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
+    .fee-total-label { font-size: 11px; color: #A0AEC0; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .fee-total-val { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; }
+    .fee-total-est { font-size: 12px; font-weight: 400; color: #A0AEC0; margin-left: 8px; }
+    .fee-note { font-size: 13px; color: #CBD5E0; margin-top: 10px; line-height: 1.6; }
+
+    /* Docs */
+    .docs-block { background: #fff; border-radius: 0 0 12px 12px; border: 1px solid #E8E4DE; border-top: none; padding: 20px 24px 24px; }
+    .docs-label { font-size: 13px; font-weight: 600; color: #718096; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .doc-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; border: 1px solid #E8E4DE; background: #fff; margin-bottom: 6px; }
+    .doc-info { flex: 1; min-width: 0; }
+    .doc-name { font-size: 14px; font-weight: 600; color: #1A202C; }
+    .doc-desc { font-size: 12px; color: #718096; }
+    .doc-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+    .doc-tag.primary { background: #5C7A6B; color: #fff; }
+    .doc-tag.secondary { background: #E6F0EB; color: #5C7A6B; }
+    .spouse-note { margin-top: 12px; padding: 10px 14px; border-radius: 8px; background: #F7F5F0; font-size: 13px; color: #5C7A6B; display: flex; align-items: flex-start; gap: 10px; }
+
+    /* Steps */
+    .steps-row { display: flex; gap: 8px; }
+    .step-col { flex: 1; text-align: center; }
+    .step-num { width: 34px; height: 34px; border-radius: 50%; background: #5C7A6B; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .step-title { font-size: 13px; font-weight: 600; color: #1A202C; margin-bottom: 2px; }
+    .step-desc { font-size: 12px; color: #718096; }
+
+    /* CTA */
+    .cta-primary { display: block; padding: 16px 24px; background: #5C7A6B; color: #fff; font-size: 16px; font-weight: 700; text-align: center; border-radius: 10px; text-decoration: none; }
+    .cta-primary:hover { background: #4A6858; }
+    .cta-secondary { padding: 12px 24px; background: transparent; color: #5C7A6B; font-size: 14px; font-weight: 700; border: 2px solid #5C7A6B; border-radius: 10px; cursor: pointer; width: 100%; }
+    .cta-secondary:hover { background: #EDF7F0; }
+    .cta-phone { text-align: center; margin: 8px 0 0; font-size: 14px; color: #5C7A6B; }
+    .cta-pdf { padding: 10px 20px; background: transparent; color: #9C7E4A; font-size: 13px; font-weight: 600; border: 1.5px solid #9C7E4A; border-radius: 8px; cursor: pointer; }
+    .cta-pdf:hover { background: #FBF8F1; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-box {
+      background: #fff; border-radius: 16px; padding: 32px 28px;
+      max-width: 420px; width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: #1A202C; text-align: center; margin: 0 0 6px; }
+    .modal-sub { font-size: 14px; color: #718096; text-align: center; margin: 0 0 20px; line-height: 1.5; }
+    .modal-input {
+      display: block; width: 100%; padding: 13px 14px; margin-bottom: 10px;
+      font-size: 14px; font-family: 'DM Sans', sans-serif;
+      border: 1px solid #E2E8F0; border-radius: 8px; background: #FAF8F4;
+      outline: none; box-sizing: border-box;
+    }
+    .modal-input:focus { border-color: #5C7A6B; }
+    .modal-submit {
+      display: block; width: 100%; padding: 14px; background: #5C7A6B; color: #fff;
+      font-size: 15px; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; margin-top: 4px;
+    }
+    .modal-privacy { font-size: 11px; color: #A0AEC0; text-align: center; margin-top: 10px; }
+
+    .success-box { padding: 10px 16px; background: #EDF7F0; border-radius: 8px; font-size: 14px; color: #276749; text-align: center; }
+    .success-box-bronze { font-size: 13px; color: #9C7E4A; text-align: center; }
+
+    .footer { margin-top: 36px; padding-top: 18px; border-top: 1px solid #E8E4DE; text-align: center; font-size: 11px; color: #A0AEC0; line-height: 1.8; }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .fee-cards { flex-direction: column; }
+      .steps-row { flex-direction: column; gap: 16px; }
+      .fee-card-val { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">Mesa Estate Planning</div>
+</div>
+
+<div class="container">
+  <div id="app"></div>
+</div>
+
+<!-- React via CDN -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<!-- html2pdf for client-side PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+/* ═══ SVG Icons ═══ */
+const Icons = {
+  check: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{flexShrink:0,marginTop:3}}><circle cx="8" cy="8" r="8" fill="#5C7A6B" opacity="0.15"/><path d="M4.5 8.5L6.5 10.5L11.5 5.5" stroke="#5C7A6B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  note: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{flexShrink:0,marginTop:3}}><circle cx="8" cy="8" r="7" stroke="#B7791F" strokeWidth="1.2" opacity="0.5"/><path d="M8 5V8.5" stroke="#B7791F" strokeWidth="1.4" strokeLinecap="round"/><circle cx="8" cy="11" r="0.7" fill="#B7791F"/></svg>,
+  back: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M10 3L5 8l5 5"/></svg>,
+  checkSmall: <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5L5 9L9.5 3.5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  doc: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{flexShrink:0}}><rect x="4" y="2" width="16" height="20" rx="2.5" fill="#5C7A6B" opacity="0.1" stroke="#5C7A6B" strokeWidth="1"/><path d="M8 8H16M8 11.5H16M8 15H13" stroke="#5C7A6B" strokeWidth="1" strokeLinecap="round"/></svg>,
+  people: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="7" cy="7" r="2.5"/><circle cx="14" cy="7" r="2.5"/><path d="M2 18v-2a4 4 0 014-4h2M12 12h2a4 4 0 014 4v2"/></svg>,
+  clipboard: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="3" width="12" height="15" rx="2"/><path d="M7 3V2a1 1 0 011-1h4a1 1 0 011 1v1"/><path d="M7 9h6M7 12h4"/></svg>,
+  document: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 2h7l4 4v11a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M12 2v4h4"/><path d="M7 10h6M7 13h4"/></svg>,
+  refresh: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10a7 7 0 0113.2-3.2M17 10a7 7 0 01-13.2 3.2"/><path d="M16 3v4h-4M4 17v-4h4"/></svg>,
+  baby: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="10" cy="8" r="5"/><path d="M5.5 13.5C6.5 16 8 17.5 10 17.5s3.5-1.5 4.5-4"/><circle cx="8" cy="7.5" r="0.5" fill="#5C7A6B"/><circle cx="12" cy="7.5" r="0.5" fill="#5C7A6B"/><path d="M8.5 9.5a1.5 1.5 0 003 0"/></svg>,
+  ring: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="10" cy="11" r="6"/><circle cx="10" cy="11" r="3"/><path d="M10 5V2M8 3l2-1 2 1"/></svg>,
+  building: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="10" height="14" rx="1"/><rect x="13" y="8" width="5" height="10" rx="1"/><path d="M6 8h2M6 11h2M6 14h2M15 11h1M15 14h1"/></svg>,
+  house: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10l7-7 7 7"/><path d="M5 9v7a1 1 0 001 1h8a1 1 0 001-1V9"/><path d="M8 17v-5h4v5"/></svg>,
+  family: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="7" cy="5" r="2"/><circle cx="13" cy="5" r="2"/><path d="M4 18v-2a3 3 0 013-3h0M16 18v-2a3 3 0 00-3-3h0"/><circle cx="10" cy="9" r="1.5"/><path d="M7.5 18v-1.5a2.5 2.5 0 015 0V18"/></svg>,
+  chart: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17V7l4 3 4-6 4 4v9"/><path d="M3 17h14"/></svg>,
+  shield: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5C7A6B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2l6 3v5c0 3.5-2.5 6.5-6 8-3.5-1.5-6-4.5-6-8V5l6-3z"/><path d="M7.5 10l2 2 3.5-3.5"/></svg>,
+};
+
+const insightIconMap = {
+  no_plan: Icons.clipboard, will_only: Icons.document, outdated: Icons.refresh,
+  minor_children: Icons.baby, married: Icons.ring, business: Icons.building,
+  real_estate: Icons.house, blended: Icons.family, tax: Icons.chart, asset_protection: Icons.shield,
+};
+
+/* ═══ APPS SCRIPT ENDPOINT — replace with your actual URL ═══ */
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6eeJCeExh5GvmBN8GkDvBUj0VezquXYQt2aqIb507UDucFRi1hlcHEWaHjSOagyVDAQ/exec";
+
+async function submitLead(formData, quizAnswers, source) {
+  const payload = {
+    ...formData,
+    source: source, // "scorecard-toolkit" or "scorecard-pdf"
+    currentPlan: quizAnswers.currentPlan,
+    maritalStatus: quizAnswers.maritalStatus,
+    minorChildren: quizAnswers.minorChildren,
+    adultChildren: quizAnswers.adultChildren,
+    blendedFamily: quizAnswers.blendedFamily,
+    netWorth: quizAnswers.netWorth,
+    ownsExtraRealEstate: quizAnswers.ownsExtraRealEstate,
+    ownsBusiness: quizAnswers.ownsBusiness,
+    priorities: quizAnswers.priorities.join(", "),
+    timestamp: new Date().toISOString(),
+  };
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  } catch (e) {
+    console.error("Lead submission error:", e);
+  }
+}
+
+/* ═══ Results Engine ═══ */
+function computeResults(a) {
+  let c = 0;
+  if (a.currentPlan === "none") c += 2;
+  else if (a.currentPlan === "will_only") c += 1.5;
+  else if (a.currentPlan === "outdated") c += 1;
+  if (a.maritalStatus === "married" || a.maritalStatus === "domestic_partner") c += 1;
+  if (a.minorChildren) c += 2;
+  if (a.adultChildren) c += 0.5;
+  if (a.blendedFamily) c += 1.5;
+  if (a.netWorth === "under_500k") c += 0.5;
+  else if (a.netWorth === "500k_1m") c += 1;
+  else if (a.netWorth === "1m_3m") c += 1.5;
+  else if (a.netWorth === "3m_5m") c += 2;
+  else if (a.netWorth === "5m_plus") c += 3;
+  if (a.ownsExtraRealEstate) c += 1;
+  if (a.ownsBusiness) c += 2;
+  c += a.priorities.length * 0.3;
+
+  let urgencyLabel, tierColor, tierBg;
+  if (c >= 8) { urgencyLabel = "Critical Priority"; tierColor = "#9B2C2C"; tierBg = "#FED7D7"; }
+  else if (c >= 5) { urgencyLabel = "High Priority"; tierColor = "#B7791F"; tierBg = "#FEFCBF"; }
+  else if (c >= 3) { urgencyLabel = "Important"; tierColor = "#2C7A7B"; tierBg = "#B2F5EA"; }
+  else { urgencyLabel = "Getting Started"; tierColor = "#5C7A6B"; tierBg = "#E6F0EB"; }
+
+  const insights = [];
+  if (a.currentPlan === "none") insights.push({k:"no_plan",h:"You don't have any estate planning documents yet",p:"A revocable living trust becomes the foundation of your plan"});
+  else if (a.currentPlan === "will_only") insights.push({k:"will_only",h:"You have a will but no trust",p:"A trust-based plan keeps your estate out of probate court"});
+  else if (a.currentPlan === "outdated") insights.push({k:"outdated",h:"Your plan hasn't been updated in 3+ years",p:"An updated plan ensures your documents reflect your current wishes"});
+  if (a.minorChildren) insights.push({k:"minor_children",h:"You have minor children",p:"Guardian nominations let you choose who raises them — not a court"});
+  if (a.maritalStatus === "married") insights.push({k:"married",h:"You're married",p:"Spousal protections and a complete document set for both of you, included"});
+  if (a.ownsBusiness) insights.push({k:"business",h:"You own a business",p:"A succession plan keeps operations running and protects your family's income"});
+  if (a.ownsExtraRealEstate) insights.push({k:"real_estate",h:"You own multiple properties",p:"Deed transfers move each property into your trust to avoid separate probates"});
+  if (a.blendedFamily) insights.push({k:"blended",h:"You have a blended family",p:"Clear trust terms protect each side and prevent inheritance disputes"});
+  if ((a.netWorth==="3m_5m"||a.netWorth==="5m_plus")&&a.priorities.includes("minimizing_taxes")) insights.push({k:"tax",h:"Your estate may be subject to federal estate tax",p:"Advanced strategies can reduce your tax exposure significantly"});
+  if (a.priorities.includes("asset_protection")&&!a.ownsBusiness) insights.push({k:"asset_protection",h:"Asset protection is important to you",p:"Trust structures can shield assets from potential lawsuits and creditors"});
+
+  const risks = [];
+  if (a.minorChildren) risks.push("Without a guardian designation, an Arizona court would decide who cares for your children");
+  if (a.ownsBusiness) risks.push("Without a succession plan, your business may face disruption if something happens to you");
+  if (a.ownsExtraRealEstate) risks.push("Properties not held in trust may require separate probate proceedings in each jurisdiction");
+  if (a.blendedFamily) risks.push("Without clear trust terms, blended families often face costly inheritance disagreements");
+  if (a.currentPlan==="none"||a.currentPlan==="will_only") risks.push("Without a trust, your estate would go through Arizona probate — typically 6–12 months with court costs");
+  if (!risks.length) risks.push("Without documents in place, Arizona default laws — not your wishes — determine what happens");
+
+  const docs = [
+    {n:"Revocable Living Trust",d:"Core of your plan",t:"TRUST PACKAGE",p:true},
+    {n:"Pour-Over Will",d:"Safety net + guardians",t:"TRUST PACKAGE",p:true},
+    {n:"Financial Power of Attorney",d:"Your chosen person manages finances",t:"INCLUDED",p:false},
+    {n:"Healthcare Directive",d:"Medical decisions if you can't speak",t:"INCLUDED",p:false},
+    {n:"Mental Health Directive",d:"Mental health treatment preferences",t:"INCLUDED",p:false},
+  ];
+  if (a.minorChildren) docs.push({n:"Guardian Nomination",d:"You choose — not a judge",t:"INCLUDED",p:false});
+  if (a.ownsExtraRealEstate) docs.push({n:"Deed Transfers",d:"Move properties into your trust",t:"TRUST PACKAGE",p:true});
+
+  const isComplex = a.ownsBusiness||a.blendedFamily||a.netWorth==="3m_5m"||a.netWorth==="5m_plus"||a.priorities.includes("business_succession")||a.priorities.includes("minimizing_taxes");
+  let fee;
+  if (a.maritalStatus==="single"&&!isComplex) fee={low:"$1,100",high:"$2,050"};
+  else if (!isComplex) fee={low:"$2,050",high:"$3,050"};
+  else fee={eLow:"$2,050",eHigh:"$3,050",bLow:"$1,000",bHigh:"$1,500",tLow:"$3,050",tHigh:"$4,550"};
+
+  return {urgencyLabel,tierColor,tierBg,insights,risks,docs,fee,isComplex};
+}
+
+/* ═══ Email Gate Modal ═══ */
+function EmailGate({title, subtitle, onClose, onSubmit}) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box" onClick={e=>e.stopPropagation()}>
+        <div className="modal-title">{title}</div>
+        <p className="modal-sub">{subtitle}</p>
+        <input className="modal-input" placeholder="Full Name" value={name} onChange={e=>setName(e.target.value)} />
+        <input className="modal-input" placeholder="Email Address" type="email" value={email} onChange={e=>setEmail(e.target.value)} />
+        <input className="modal-input" placeholder="Phone Number" type="tel" value={phone} onChange={e=>setPhone(e.target.value)} />
+        <button className="modal-submit" onClick={()=>onSubmit({name,email,phone})} disabled={!name||!email}>Send It</button>
+        <p className="modal-privacy">We respect your privacy. No spam, ever.</p>
+      </div>
+    </div>
+  );
+}
+
+/* ═══ Main App ═══ */
+function App() {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({
+    currentPlan:null, maritalStatus:null,
+    minorChildren:false, adultChildren:false, blendedFamily:false,
+    netWorth:null, ownsExtraRealEstate:false, ownsBusiness:false,
+    priorities:[],
+  });
+  const [showToolkit, setShowToolkit] = useState(false);
+  const [showPdf, setShowPdf] = useState(false);
+  const [toolkitSent, setToolkitSent] = useState(false);
+  const [pdfSent, setPdfSent] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const pdfRef = useRef(null);
+
+  useEffect(() => { setVisible(false); requestAnimationFrame(()=>requestAnimationFrame(()=>setVisible(true))); window.scrollTo(0,0); }, [step]);
+
+  const set = (k,v) => setAnswers(p=>({...p,[k]:v}));
+  const toggleP = p => setAnswers(prev=>({...prev,priorities:prev.priorities.includes(p)?prev.priorities.filter(x=>x!==p):[...prev.priorities,p]}));
+
+  const handleToolkitSubmit = (formData) => {
+    submitLead(formData, answers, "scorecard-toolkit");
+    setShowToolkit(false);
+    setToolkitSent(true);
+  };
+
+  const handlePdfSubmit = (formData) => {
+    submitLead(formData, answers, "scorecard-pdf");
+    setShowPdf(false);
+    setPdfSent(true);
+    // Generate and download PDF
+    setTimeout(() => {
+      const el = document.getElementById("pdf-render-target");
+      if (el) {
+        html2pdf().set({
+          margin: [0.5, 0.5, 0.5, 0.5],
+          filename: 'Your-Estate-Plan-Profile.pdf',
+          image: { type: 'jpeg', quality: 0.95 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        }).from(el).save();
+      }
+    }, 300);
+  };
+
+  // ── Quiz Steps ──
+  if (step === 0) return (
+    <div className={`step-content ${visible?"visible":""}`} style={{textAlign:"center",marginTop:60}}>
+      <h1 className="page-title">Your Estate Plan Scorecard</h1>
+      <p className="page-subtitle">Answer a few quick questions to discover what estate plan fits your life — and what it might cost.</p>
+      <p className="page-meta">About 2 minutes · Free · No login required</p>
+      <button className="btn-primary" onClick={()=>setStep(1)}>Get Started</button>
+      <p style={{fontSize:12,color:"#A0AEC0",marginTop:24}}>Mesa Estate Planning PLLC · Mesa, Arizona</p>
+    </div>
+  );
+
+  if (step === 1) return (
+    <div className={`step-content ${visible?"visible":""}`} style={{marginTop:28}}>
+      <button className="btn-back" onClick={()=>setStep(0)}>{Icons.back} Back</button>
+      <div className="progress">{[0,1,2,3].map(i=><div key={i} className={`progress-seg ${i<=0?"active":""}`}/>)}</div>
+      <h2 className="section-title">Do you currently have an estate plan?</h2>
+      <p className="section-desc">This helps us understand your starting point.</p>
+      {[["none","No estate plan at all","No will, no trust, no documents"],["will_only","I have a will, but no trust","Will but no trust"],["outdated","I have a plan, but it's outdated","Created 3+ years ago or before a major life change"],["current","I have a current estate plan","Recently updated and reviewed"]].map(([v,t,s])=>
+        <button key={v} className={`option-btn ${answers.currentPlan===v?"selected":""}`} onClick={()=>set("currentPlan",v)}><span className="opt-title">{t}</span><span className="opt-sub">{s}</span></button>
+      )}
+      <button className="btn-primary" onClick={()=>setStep(2)} disabled={!answers.currentPlan}>Continue</button>
+    </div>
+  );
+
+  if (step === 2) return (
+    <div className={`step-content ${visible?"visible":""}`} style={{marginTop:28}}>
+      <button className="btn-back" onClick={()=>setStep(1)}>{Icons.back} Back</button>
+      <div className="progress">{[0,1,2,3].map(i=><div key={i} className={`progress-seg ${i<=1?"active":""}`}/>)}</div>
+      <h2 className="section-title">Tell us about your family</h2>
+      <p className="section-desc">Your family situation shapes what protections you need.</p>
+      <p className="field-label">Marital Status</p>
+      {[["single","Single"],["married","Married"],["domestic_partner","Domestic Partner"]].map(([v,t])=>
+        <button key={v} className={`option-btn ${answers.maritalStatus===v?"selected":""}`} onClick={()=>set("maritalStatus",v)}><span className="opt-title">{t}</span></button>
+      )}
+      <p className="field-label" style={{marginTop:16}}>Children</p>
+      {[["minorChildren","I have minor children (under 18)"],["adultChildren","I have adult children"],["blendedFamily","Blended family (children from prior relationships)"]].map(([k,l])=>
+        <button key={k} className={`check-btn ${answers[k]?"checked":""}`} onClick={()=>set(k,!answers[k])}><div className="check-box">{answers[k]&&Icons.checkSmall}</div>{l}</button>
+      )}
+      <button className="btn-primary" onClick={()=>setStep(3)} disabled={!answers.maritalStatus}>Continue</button>
+    </div>
+  );
+
+  if (step === 3) return (
+    <div className={`step-content ${visible?"visible":""}`} style={{marginTop:28}}>
+      <button className="btn-back" onClick={()=>setStep(2)}>{Icons.back} Back</button>
+      <div className="progress">{[0,1,2,3].map(i=><div key={i} className={`progress-seg ${i<=2?"active":""}`}/>)}</div>
+      <h2 className="section-title">Assets & Property</h2>
+      <p className="section-desc">A rough range is fine — this helps us estimate the right level of planning.</p>
+      <p className="field-label">Estimated total net worth</p>
+      {[["under_500k","Under $500,000"],["500k_1m","$500,000 – $1 million"],["1m_3m","$1 – $3 million"],["3m_5m","$3 – $5 million"],["5m_plus","$5 million+"]].map(([v,t])=>
+        <button key={v} className={`option-btn ${answers.netWorth===v?"selected":""}`} onClick={()=>set("netWorth",v)}><span className="opt-title">{t}</span></button>
+      )}
+      <p className="field-label" style={{marginTop:16}}>Additional details</p>
+      <button className={`check-btn ${answers.ownsExtraRealEstate?"checked":""}`} onClick={()=>set("ownsExtraRealEstate",!answers.ownsExtraRealEstate)}><div className="check-box">{answers.ownsExtraRealEstate&&Icons.checkSmall}</div>I own real estate beyond my primary home</button>
+      <button className={`check-btn ${answers.ownsBusiness?"checked":""}`} onClick={()=>set("ownsBusiness",!answers.ownsBusiness)}><div className="check-box">{answers.ownsBusiness&&Icons.checkSmall}</div>I own a business or have ownership interest</button>
+      <button className="btn-primary" onClick={()=>setStep(4)} disabled={!answers.netWorth}>Continue</button>
+    </div>
+  );
+
+  if (step === 4) {
+    const pList = [["protecting_kids","Protecting my kids if something happens to me"],["avoiding_probate","Avoiding probate"],["asset_protection","Asset protection from lawsuits or creditors"],["minimizing_taxes","Minimizing estate taxes"],["business_succession","Business succession planning"],["charitable_giving","Charitable giving"],["special_needs","Special needs planning for a loved one"],["pet_care","Pet care planning"]];
+    return (
+      <div className={`step-content ${visible?"visible":""}`} style={{marginTop:28}}>
+        <button className="btn-back" onClick={()=>setStep(3)}>{Icons.back} Back</button>
+        <div className="progress">{[0,1,2,3].map(i=><div key={i} className={`progress-seg ${i<=3?"active":""}`}/>)}</div>
+        <h2 className="section-title">What matters most to you?</h2>
+        <p className="section-desc">Select all that apply. This shapes your personalized recommendation.</p>
+        {pList.map(([v,l])=>
+          <button key={v} className={`check-btn ${answers.priorities.includes(v)?"checked":""}`} onClick={()=>toggleP(v)}><div className="check-box">{answers.priorities.includes(v)&&Icons.checkSmall}</div>{l}</button>
+        )}
+        <button className="btn-primary" onClick={()=>setStep(5)}>See My Results</button>
+      </div>
+    );
+  }
+
+  // ── Results ──
+  const r = computeResults(answers);
+
+  return (
+    <>
+      {showToolkit && <EmailGate title="Get Your Free Estate Planning Toolkit" subtitle="A personalized checklist, an asset protection case study, and a free Parental Power of Attorney form." onClose={()=>setShowToolkit(false)} onSubmit={handleToolkitSubmit} />}
+      {showPdf && <EmailGate title="Download Your Estate Plan Profile" subtitle="We'll send your personalized profile as a PDF — perfect for sharing with your spouse to start the conversation." onClose={()=>setShowPdf(false)} onSubmit={handlePdfSubmit} />}
+
+      <div className={`step-content ${visible?"visible":""}`}>
+        {/* Title + Badge */}
+        <div style={{textAlign:"center",marginTop:28}}>
+          <h1 className="results-title">Your Estate Plan Profile</h1>
+          <span className="badge" style={{background:r.tierBg,color:r.tierColor}}>{r.urgencyLabel}</span>
+        </div>
+
+        {/* Situation + Protections */}
+        <div className="card" style={{marginTop:20}}>
+          <h2 className="r-h2">Your Situation & What You'd Get</h2>
+          {r.insights.map((item,i) => (
+            <div key={i} className="insight-row">
+              <div className="insight-icon">{insightIconMap[item.k]}</div>
+              <div>
+                <div className="insight-heard">{item.h}</div>
+                <div className="insight-prot">{Icons.check}<span>{item.p}</span></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Things to Consider */}
+        <div className="risk-card" style={{marginTop:14}}>
+          <h2 className="risk-h2">Things to Consider</h2>
+          {r.risks.map((risk,i) => <div key={i} className="risk-item">{Icons.note}<span>{risk}</span></div>)}
+        </div>
+
+        {/* Fee + Documents */}
+        <div style={{marginTop:14}}>
+          <div className="fee-block">
+            <div className="fee-label">Estimated Fee Range</div>
+            {!r.isComplex ? (
+              <div className="fee-big">{r.fee.low} – {r.fee.high}<span className="fee-est">est.</span></div>
+            ) : (
+              <div>
+                <div className="fee-cards">
+                  <div className="fee-card">
+                    <div className="fee-card-label">Estate Planning</div>
+                    <div className="fee-card-val">{r.fee.eLow} – {r.fee.eHigh}</div>
+                  </div>
+                  <div className="fee-card">
+                    <div className="fee-card-label">Business Planning</div>
+                    <div className="fee-card-val">{r.fee.bLow} – {r.fee.bHigh}</div>
+                  </div>
+                </div>
+                <div className="fee-total-label">Combined Estimated Total</div>
+                <div className="fee-total-val">{r.fee.tLow} – {r.fee.tHigh}<span className="fee-total-est">est.</span></div>
+              </div>
+            )}
+            <div className="fee-note">Every plan is tailored. You'll receive an exact quote at your free 30-minute consultation before you commit to anything.</div>
+          </div>
+          <div className="docs-block">
+            <div className="docs-label">What's Included</div>
+            {r.docs.map((doc,i) => (
+              <div key={i} className="doc-row">
+                {Icons.doc}
+                <div className="doc-info"><div className="doc-name">{doc.n}</div><div className="doc-desc">{doc.d}</div></div>
+                <span className={`doc-tag ${doc.p?"primary":"secondary"}`}>{doc.t}</span>
+              </div>
+            ))}
+            {answers.maritalStatus === "married" && (
+              <div className="spouse-note">{Icons.people}<span><strong>Spouse documents included at no extra cost.</strong> Your Trust Package includes a full set for your spouse — Financial POA, Healthcare Directive, and Mental Health Directive.</span></div>
+            )}
+          </div>
+        </div>
+
+        {/* What Happens Next */}
+        <div className="card" style={{marginTop:14}}>
+          <h2 className="r-h2" style={{textAlign:"center"}}>What Happens Next</h2>
+          <div className="steps-row">
+            {[{n:"1",t:"Book a free call",d:"No pressure, no commitment."},
+              {n:"2",t:"Get your quote",d:"Exact fees for your situation."},
+              {n:"3",t:"We prepare it all",d:"Signed & funded in 3–4 weeks."}
+            ].map(s=>(
+              <div key={s.n} className="step-col">
+                <div className="step-num">{s.n}</div>
+                <div className="step-title">{s.t}</div>
+                <div className="step-desc">{s.d}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTAs */}
+        <div style={{marginTop:20}}>
+          <a className="cta-primary" href="https://cal.com/mckay-tucker-6xuf6e/free-30-minute-estate-plan-consultation" target="_blank" rel="noopener noreferrer">Book Your Free 30-Minute Consultation</a>
+          <div className="cta-phone"><a href="tel:4802695737">Or call (480) 269-5737</a></div>
+
+          <div className="card" style={{marginTop:20,textAlign:"center"}}>
+            <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:19,fontWeight:600,color:"#1A202C",margin:"0 0 6px"}}>Not Ready for a Consultation Yet?</h3>
+            <p style={{fontSize:13,color:"#718096",margin:"0 0 14px",lineHeight:1.5}}>Get a free estate planning toolkit — a personalized checklist, an asset protection case study, and a Parental Power of Attorney form.</p>
+            {!toolkitSent ? (
+              <button className="cta-secondary" onClick={()=>setShowToolkit(true)}>Send My Free Toolkit</button>
+            ) : (
+              <div className="success-box">✓ Check your email — your toolkit is on the way.</div>
+            )}
+          </div>
+
+          <div style={{textAlign:"center",marginTop:18}}>
+            {!pdfSent ? (
+              <button className="cta-pdf" onClick={()=>setShowPdf(true)}>Download Your Estate Plan Profile (PDF)</button>
+            ) : (
+              <div className="success-box-bronze">✓ Your PDF is downloading now.</div>
+            )}
+            <p style={{fontSize:11,color:"#A0AEC0",marginTop:4}}>Share with your spouse to start the conversation</p>
+          </div>
+        </div>
+
+        <div className="footer">
+          This tool provides general estimates for informational purposes only and does not constitute legal advice. Fees are confirmed after consultation.<br/>Mesa Estate Planning PLLC · 48 N Macdonald, Mesa, AZ 85201
+        </div>
+      </div>
+
+      {/* Hidden PDF render target */}
+      <div id="pdf-render-target" ref={pdfRef} style={{position:"absolute",left:"-9999px",top:0,width:"7.5in",background:"#fff",padding:"0.5in",fontFamily:"'DM Sans',sans-serif",color:"#2D3748",fontSize:"11px",lineHeight:1.5}}>
+        <div style={{textAlign:"center",borderBottom:"2px solid #5C7A6B",paddingBottom:8,marginBottom:16}}>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:14,fontWeight:700,color:"#5C7A6B"}}>Mesa Estate Planning</div>
+        </div>
+        <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:700,textAlign:"center",margin:"0 0 4px"}}>Your Estate Plan Profile</h1>
+        <p style={{textAlign:"center",fontSize:10,color:"#718096",margin:"0 0 10px"}}>Personalized results based on your scorecard answers</p>
+        <div style={{textAlign:"center",marginBottom:14}}>
+          <span style={{display:"inline-block",padding:"4px 18px",borderRadius:4,background:r.tierBg,color:r.tierColor,fontSize:10,fontWeight:700,letterSpacing:"0.05em",textTransform:"uppercase"}}>{r.urgencyLabel}</span>
+        </div>
+        <h2 style={{fontSize:13,fontWeight:700,marginBottom:8}}>Your Situation & What You'd Get</h2>
+        {r.insights.map((item,i) => (
+          <div key={i} style={{marginBottom:8}}>
+            <div style={{fontSize:9,color:"#718096"}}>{item.h}</div>
+            <div style={{fontSize:10}}>✓ {item.p}</div>
+          </div>
+        ))}
+        <h2 style={{fontSize:13,fontWeight:700,color:"#7C6A3A",marginTop:14,marginBottom:8}}>Things to Consider</h2>
+        {r.risks.map((risk,i) => <div key={i} style={{fontSize:10,color:"#6B5D3E",marginBottom:4}}>● {risk}</div>)}
+        <div style={{background:"#2D3748",color:"#fff",borderRadius:8,padding:14,marginTop:14}}>
+          <div style={{fontSize:9,textTransform:"uppercase",letterSpacing:"0.08em",color:"#A0AEC0",marginBottom:2}}>Estimated Fee Range</div>
+          {!r.isComplex ? (
+            <div style={{fontSize:20,fontWeight:700,fontFamily:"'Cormorant Garamond',serif"}}>{r.fee.low} – {r.fee.high} <span style={{fontSize:9,color:"#A0AEC0"}}>est.</span></div>
+          ) : (
+            <div>
+              <div style={{display:"flex",gap:8,marginBottom:8}}>
+                <div style={{flex:1,background:"rgba(255,255,255,0.07)",borderRadius:6,padding:8}}>
+                  <div style={{fontSize:8,color:"#A0AEC0",textTransform:"uppercase",marginBottom:2}}>Estate Planning</div>
+                  <div style={{fontSize:16,fontWeight:700,fontFamily:"'Cormorant Garamond',serif"}}>{r.fee.eLow} – {r.fee.eHigh}</div>
+                </div>
+                <div style={{flex:1,background:"rgba(255,255,255,0.07)",borderRadius:6,padding:8}}>
+                  <div style={{fontSize:8,color:"#A0AEC0",textTransform:"uppercase",marginBottom:2}}>Business Planning</div>
+                  <div style={{fontSize:16,fontWeight:700,fontFamily:"'Cormorant Garamond',serif"}}>{r.fee.bLow} – {r.fee.bHigh}</div>
+                </div>
+              </div>
+              <div style={{fontSize:8,color:"#A0AEC0",textTransform:"uppercase"}}>Combined Total</div>
+              <div style={{fontSize:14,fontWeight:700,fontFamily:"'Cormorant Garamond',serif"}}>{r.fee.tLow} – {r.fee.tHigh} <span style={{fontSize:9,color:"#A0AEC0"}}>est.</span></div>
+            </div>
+          )}
+        </div>
+        <h2 style={{fontSize:13,fontWeight:700,marginTop:14,marginBottom:8}}>What's Included</h2>
+        {r.docs.map((doc,i) => <div key={i} style={{fontSize:10,marginBottom:3}}>• <strong>{doc.n}</strong> — {doc.d}</div>)}
+        {answers.maritalStatus==="married" && <div style={{fontSize:9,color:"#5C7A6B",marginTop:6}}><strong>Spouse documents included at no extra cost.</strong></div>}
+        <div style={{marginTop:16,textAlign:"center",borderTop:"1px solid #E8E4DE",paddingTop:10}}>
+          <div style={{fontSize:13,fontWeight:700,marginBottom:4}}>Ready to Get Started?</div>
+          <div style={{fontSize:11,color:"#5C7A6B",fontWeight:700}}>Book your free consultation: (480) 269-5737</div>
+          <div style={{fontSize:8,color:"#A0AEC0",marginTop:8}}>Mesa Estate Planning PLLC · 48 N Macdonald, Mesa, AZ 85201</div>
+          <div style={{fontSize:7,color:"#A0AEC0",marginTop:4}}>This report is for informational purposes only and does not constitute legal advice. Fees confirmed after consultation.</div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("app")).render(<App />);
+</script>
+
+</body>
+</html>
