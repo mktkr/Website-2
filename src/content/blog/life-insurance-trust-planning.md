@@ -67,7 +67,7 @@ You pick the trustee. That could be a trusted family member, a professional fidu
 <figure class="article-figure">
   <img
     src="/images/articles/life-insurance-trust-planning-mid.webp"
-    alt="New Yorker style cartoon of a burglar in striped shirt and mask trying to climb a too-short ladder over a brick wall, while gold coins and a life insurance document sit safely on the other side"
+    alt="Cartoon of a burglar standing on top of a tall brick wall"
     width="1200" height="700"
     loading="lazy" decoding="async"
   />
