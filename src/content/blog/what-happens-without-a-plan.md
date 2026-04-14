@@ -7,8 +7,22 @@ category: "Article"
 readTime: "4 min read"
 featured: true
 heroImage: "/images/articles/intestacy-hero.webp"
+closingImage: "/images/articles/intestacy-superstition-mountains.webp"
 ogImage: "/images/articles/intestacy-hero.webp"
 keywords: "intestate succession Arizona, dying without a will Arizona, Arizona estate planning, who inherits without a will, ARS 14-2102, intestacy laws Arizona, blended family estate plan, Arizona community property"
+relatedResources:
+  - label: "Life Stage"
+    title: "Estate Planning for Blended Families"
+    description: "QTIP trusts, separate property, and the full planning picture."
+    href: "/life-stages/blended-families"
+  - label: "Service"
+    title: "Wills & Trusts"
+    description: "Revocable trusts, wills, and probate avoidance strategies."
+    href: "/services/wills-and-trusts"
+  - label: "Article"
+    title: "Does Every Arizona Family Need a Living Trust?"
+    description: "When a trust makes sense, what it costs, and why it matters."
+    href: "/blog/arizona-family-living-trust"
 ---
 
 <div class="quick-answer">
@@ -85,14 +99,3 @@ The financial cost of dying without a plan is real — probate fees, attorney fe
 A will lets you choose who gets what and who's in charge of making it happen. A revocable living trust goes further — it keeps your family out of probate court entirely, protects your privacy, and provides for you during incapacity. Both are straightforward to create. Both are far less expensive than the alternative.
 
 If you have a spouse, children, a home, or assets you care about passing to the right people, the question isn't whether you can afford to plan. It's whether your family can afford for you not to.
-
-<div class="article-closing-img">
-  <img
-    src="/images/articles/intestacy-superstition-mountains.webp"
-    alt="Superstition Mountains east of Mesa, Arizona at golden hour with saguaro cacti in the foreground"
-    width="1200"
-    height="500"
-    loading="lazy"
-    decoding="async"
-  />
-</div>

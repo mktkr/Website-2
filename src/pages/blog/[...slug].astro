@@ -12,6 +12,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+const related = post.data.relatedResources || [];
 ---
 
 <BlogLayout
@@ -29,12 +30,37 @@ const { Content } = await post.render();
       <img
         src={post.data.heroImage}
         alt={post.data.title}
-        width="1200"
-        height="630"
-        loading="eager"
-        decoding="async"
+        width="1200" height="630"
+        loading="eager" decoding="async"
       />
     </div>
   )}
+
   <Content />
+
+  {post.data.closingImage && (
+    <div class="article-closing-img">
+      <img
+        src={post.data.closingImage}
+        alt={`${post.data.title} — Mesa Estate Planning`}
+        width="1200" height="500"
+        loading="lazy" decoding="async"
+      />
+    </div>
+  )}
+
+  {related.length > 0 && (
+    <div class="article-related">
+      <div class="article-related-label">Related Resources</div>
+      <div class="article-related-grid">
+        {related.map(r => (
+          <a href={r.href} class="article-related-card">
+            <span class="article-related-card-label">{r.label}</span>
+            <h4>{r.title}</h4>
+            <p>{r.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
 </BlogLayout>

@@ -3,6 +3,9 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://www.mesaestateplanninglawyer.com',
+  redirects: {
+    '/tools/blended-family-guide': '/blog/blended-family-guide',
+  },
   integrations: [
     sitemap({
       changefreq: 'weekly',

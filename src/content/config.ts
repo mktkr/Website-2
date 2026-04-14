@@ -11,8 +11,15 @@ const blog = defineCollection({
     readTime: z.string(),
     featured: z.boolean().default(false),
     heroImage: z.string().optional(),
+    closingImage: z.string().optional(),
     ogImage: z.string().optional(),
     keywords: z.string().optional(),
+    relatedResources: z.array(z.object({
+      label: z.string(),
+      title: z.string(),
+      description: z.string(),
+      href: z.string(),
+    })).optional(),
   }),
 });
 

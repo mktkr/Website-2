@@ -7,6 +7,19 @@ category: "Trusts"
 readTime: "8 min read"
 featured: true
 keywords: "living trust arizona, do i need a trust, arizona probate, revocable living trust mesa"
+relatedResources:
+  - label: "Article"
+    title: "What Happens If You Die Without a Plan?"
+    description: "Arizona's intestacy rules and who inherits by default."
+    href: "/blog/what-happens-without-a-plan"
+  - label: "Service"
+    title: "Wills & Trusts"
+    description: "Revocable trusts, wills, and probate avoidance strategies."
+    href: "/services/wills-and-trusts"
+  - label: "Life Stage"
+    title: "Estate Planning for Growing Families"
+    description: "Guardianship, trusts for children, and protecting your family."
+    href: "/life-stages/growing-family"
 ---
 
 If you own a home in Arizona, have minor children, or have assets you want to pass on to your family — you've probably wondered whether you need a living trust.

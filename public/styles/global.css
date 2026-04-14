@@ -2546,3 +2546,25 @@ body.v2-home nav.scrolled .nav-link {
 .callout-bronze p { font-size: 0.94rem; line-height: 1.72; margin-bottom: 0; font-weight: 400; color: var(--charcoal, #2C2C2C); }
 .article-body h3 { font-family: var(--serif, 'Cormorant Garamond', Georgia, serif); font-size: 1.15rem; font-weight: 500; font-style: italic; color: var(--charcoal, #2C2C2C); margin: 24px 0 8px; line-height: 1.3; }
 @media (max-width: 640px) { .article-hero-img, .article-closing-img { margin-left: -16px; margin-right: -16px; border-radius: 0; } .article-figure img { border-radius: 4px; } }
+
+/* ═══ Article CTA Card ═══ */
+.article-cta-card { background: var(--sage, #5C7A6B); border-radius: 8px; padding: 36px 32px; text-align: center; margin: 48px 0 32px; }
+.article-cta-card h3 { font-family: var(--serif, 'Cormorant Garamond', Georgia, serif); font-size: 1.4rem; font-weight: 500; color: #FAF8F4; margin: 0 0 8px; }
+.article-cta-card p { color: rgba(250,248,244,0.8); font-size: 0.9rem; margin-bottom: 20px; font-weight: 300; }
+
+/* ═══ Related Resources ═══ */
+.article-related { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--sand, #EDE8DF); }
+.article-related-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage, #5C7A6B); font-weight: 600; margin-bottom: 16px; }
+.article-related-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.article-related-card { display: block; padding: 20px 22px; border: 1px solid var(--sand, #EDE8DF); border-radius: 6px; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+.article-related-card:hover { border-color: var(--bronze, #9C7E4A); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.article-related-card-label { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage, #5C7A6B); font-weight: 600; display: block; margin-bottom: 6px; }
+.article-related-card h4 { font-family: var(--serif, 'Cormorant Garamond', Georgia, serif); font-size: 1.1rem; font-weight: 500; color: var(--charcoal, #2C2C2C); margin-bottom: 4px; line-height: 1.3; }
+.article-related-card p { font-size: 0.82rem; color: var(--mid-gray, #6B6560); font-weight: 300; line-height: 1.5; margin: 0; }
+
+@media (min-width: 641px) {
+  .article-related-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .article-cta-card { padding: 28px 20px; margin: 36px -16px 24px; border-radius: 0; }
+}
