@@ -27,47 +27,47 @@ relatedResources:
 
 <div class="quick-answer">
   <div class="quick-answer-label">Quick Answer</div>
-  <p>The "gold standard" is an Irrevocable Life Insurance Trust (ILIT) that owns your policy from day one. The trust — not you — owns the policy, pays the premiums, and collects the death benefit. That keeps the payout out of your taxable estate, away from creditors, and under the control of your trust terms instead of a lump-sum check to your 24-year-old.</p>
+  <p>The "gold standard" is an Irrevocable Life Insurance Trust (ILIT) that owns your policy from day one. The trust (not you) owns the policy, pays the premiums, and collects the death benefit. This structure keeps payout funds out of your taxable estate, away from all creditors, and under the control of your trust terms.</p>
 </div>
 
 ## The Problem with Life Insurance You Own Yourself
 
-Most people buy a life insurance policy, name their spouse as beneficiary, and assume they're done. For a lot of families, that works fine. But if your estate is anywhere near $15 million — the current federal estate tax exemption for 2026 — you've got a math problem.
+Most people buy a life insurance policy, name their spouse as beneficiary, and assume they're done. For many families, this setup works. If your estate is near the Estate Tax Exemption cutoff ($15M for individuals/$30M for couples), life insurance may create a math problem and push you over a tax cliff.
 
-The IRS counts life insurance death benefits as part of your taxable estate if you owned the policy when you died. A $2 million term policy that was supposed to protect your family just pushed your estate over the exemption line. The federal estate tax rate on the overage? Forty percent. That $2 million policy just cost your family $800,000.
+The IRS counts life insurance death benefits as part of your taxable estate if you owned the policy when you died. Any assets over the exemption limit are taxed at 40%. A $2 million term policy that was supposed to protect your family might cost your family $800,000.
 
-And that's only the tax issue. There's also the control issue: a death benefit paid straight to a beneficiary lands in their bank account with zero strings attached. No protection from creditors. No protection from a future divorce. No protection from your son-in-law's questionable business ventures.
+And that's only the tax issue. For most Americans, the first benefit of estate planning is securing asset protection and adequate controls over the money for your heirs. A death benefit paid straight to a beneficiary lands in their bank account with zero strings attached. No protection from creditors. No protection from a future divorce. No protection from your son-in-law's questionable business ventures.
 
 ## What Arizona Law Already Gives You
 
-Arizona is actually a decent state for life insurance protection on its own. Under A.R.S. § 20-1131, life insurance proceeds paid to a named beneficiary (other than your estate) are generally exempt from the claims of your creditors. If you've named your spouse, child, or dependent family member as beneficiary for at least two continuous years, even the cash surrender value gets creditor protection.
+Arizona is actually a decent state for life insurance protection on its own. Under A.R.S. § 20-1131, life insurance proceeds paid to a named beneficiary (other than your estate) are generally exempt from the claims of your personal creditors. If you've named your spouse, child, or dependent family member as beneficiary for at least two continuous years, even the cash surrender value is protected from your creditors.
 
-That's a real benefit. But it's not the whole picture.
+That's a real benefit, but Arizona law only provides half the solution.
 
-The statute protects the proceeds from *your* creditors. It doesn't protect the money from your *beneficiary's* creditors once they receive it. The second that death benefit hits your daughter's checking account, it's fair game for her creditors, her divorce proceedings, or a lawsuit. Arizona law got you halfway there. A trust gets you the rest of the way.
+The statute protects the proceeds from *your* creditors. It doesn't protect the money from your *beneficiary's* creditors once they receive it. The second your death benefit hits your daughter's checking account, it's fair game for her creditors, her divorce proceedings, or a lawsuit. Careful estate planning provides a path for complete asset protection for these funds.
 
 ## The Gold Standard: An ILIT That Owns the Policy
 
-An Irrevocable Life Insurance Trust — called an ILIT (pronounced "eye-lit") — is a trust created specifically to own a life insurance policy. You don't own the policy. The trust does. You don't pay the premiums directly. You make gifts to the trust, and the trustee uses those funds to pay the premiums.
+An Irrevocable Life Insurance Trust — called an ILIT (pronounced "eye-lit") — is a trust created specifically to own a life insurance policy. You don't own the policy, the trust does. You don't pay the premiums directly. Rather, you make gifts to the trust, and the trustee uses those funds to pay the premiums.
 
 Here's what that structure buys you:
 
 ### The death benefit stays out of your taxable estate
 
-Because the trust owns the policy, the death benefit is not included in your gross estate for federal estate tax purposes. For a couple with a $16 million estate and a $3 million policy, that's the difference between owing zero federal estate tax and owing $1.6 million. Arizona doesn't have a state estate tax, so once you've cleared the federal hurdle, you're done.
+Because the trust owns the policy, the death benefit is not included in your gross estate for federal estate tax purposes. For a couple with an appreciating estate, a $3 million policy with no planning could be the difference between owing zero federal estate tax and owing $1.6 million or more. Arizona doesn't have a state estate tax, so once you've cleared the federal hurdle, you're done.
 
 ### Your beneficiaries get protection they can't give themselves
 
-The trust terms control how and when the money gets distributed. You can build in spendthrift provisions that keep the funds out of reach from a beneficiary's creditors, divorce proceedings, or lawsuits. Your 28-year-old gets income for living expenses; she doesn't get a seven-figure check and a new friend group.
+The trust terms control how and when the money gets distributed. You can build in spendthrift provisions that keep the funds out of reach from a beneficiary's creditors, divorce proceedings, or lawsuits. Your ILIT can provide money for living expenses and education, but pump the brakes on spending the proceeds of your policy on an exotic car or risky investment.
 
 ### You decide who manages the money
 
-You pick the trustee. That could be a trusted family member, a professional fiduciary, or a combination. The trustee manages the proceeds according to your written instructions, not according to whatever your beneficiary feels like doing on a Tuesday afternoon.
+You pick the trustee. That could be a trusted family member, a professional fiduciary, or a combination. The trustee manages the proceeds according to your written instructions.
 
 <figure class="article-figure">
   <img
     src="/images/articles/life-insurance-trust-planning-mid.webp"
-    alt="Two ceramic bowls on raw linen tablecloth, one upturned covering old coins and a brass ring, with a dried desert marigold stem between them"
+    alt="New Yorker style cartoon of a burglar in striped shirt and mask trying to climb a too-short ladder over a brick wall, while gold coins and a life insurance document sit safely on the other side"
     width="1200" height="700"
     loading="lazy" decoding="async"
   />
@@ -76,9 +76,9 @@ You pick the trustee. That could be a trusted family member, a professional fidu
 
 ## The Catch: The Three-Year Rule
 
-If you transfer an existing life insurance policy into an ILIT and die within three years of the transfer, the IRS pulls the death benefit back into your taxable estate. The technical term for this is IRC § 2035, and it's one of the most common ILIT mistakes.
+If you transfer an existing life insurance policy into an ILIT and die within three years of the transfer, the IRS pulls the death benefit back into your taxable estate (IRC § 2035). This is one of the most common ILIT mistakes.
 
-The fix is simple but requires planning ahead. Have the trust purchase a *new* policy from the start. If the ILIT applies for and owns the policy from day one, the three-year rule never applies. This is why your estate planning attorney and your insurance advisor need to be in the same room (or at least on the same phone call) before anyone fills out an application.
+The fix is simple but requires planning ahead. Rather than move a life insurance policy into an ILIT, have the trust purchase a new policy from the start. If the ILIT applies for and owns the policy from day one, the three-year rule never applies. This is why your estate planning attorney and your insurance advisor should be in the same room (or at least on the same phone call) when you're considering insurance planning.
 
 <div class="callout-bronze">
   <p>The biggest mistake families make with life insurance isn't buying the wrong amount. It's owning the policy personally when a trust should own it. By the time you realize the error, you're either dead (too late) or stuck waiting out the three-year rule.</p>
@@ -86,30 +86,16 @@ The fix is simple but requires planning ahead. Have the trust purchase a *new* p
 
 ## How Premium Payments Work Inside an ILIT
 
-You can't just write a check to the insurance company. You make a gift to the trust, and the trustee pays the premium. Those gifts can qualify for the annual gift tax exclusion — $19,000 per beneficiary in 2026 — but only if the trust includes what are called Crummey withdrawal rights.
+With a policy owned by a trust, you can't just write a check to the insurance company from your account. ILITs require a two-step process where you first make a gift to the trust, then the trustee pays the premium for the trust. Large gifts (over $19,000 to the trust per year) will trigger gift taxes or use up some of your lifetime exemption unless properly planned.
 
-Crummey rights (named after a taxpayer, not a commentary on the process) give each trust beneficiary a short window — typically 30 to 45 days — to withdraw their share of the gift. They almost never do. But the right to withdraw is what turns a future-interest gift into a present-interest gift, which is what qualifies it for the annual exclusion.
+When properly drafted with "Crummey" withdrawal rights (named after a taxpayer, not a commentary on the process), your trust will allow you to gift up to $19,000 per beneficiary while qualifying for the annual gift tax exclusion (no gift taxes owed on the premium payment gift). Crummey rights give each trust beneficiary a short window (typically 30 to 45 days) to withdraw their share of the gift. This "option" is almost never exercised, but providing it is a common way to maintain the tax benefits that keep future insurance proceeds out of your estate.
 
-Your trustee sends a written notice each time you make a contribution. Skip the notice, and the IRS can reclassify the gift, eating into your lifetime exemption or triggering gift tax. It's a paperwork step, not a hard one. But it matters every single year.
-
-## Who Actually Needs an ILIT in Arizona?
-
-Not everyone. The 2026 federal estate tax exemption is $15 million per person, or $30 million for a married couple. If your total estate — including life insurance death benefits — falls well below that line, the tax benefits of an ILIT may not move the needle for you.
-
-But tax savings aren't the only reason to use one. You should seriously consider an ILIT if:
-
-Your estate is above $10 million and growing. Real estate in the East Valley has appreciated fast. Business valuations go up. You may be closer to the exemption line than you think.
-
-You're in a profession that attracts lawsuits. Doctors, contractors, real estate developers. An ILIT adds a creditor-protection layer that Arizona's exemption statute alone doesn't provide for your beneficiaries.
-
-You have a child with special needs. Life insurance proceeds dumped directly into a beneficiary's name can disqualify them from Medicaid and AHCCCS. An ILIT can be structured alongside a supplemental needs trust to preserve those benefits.
-
-You want control over how the money is used. Maybe your kids are responsible. Maybe one of them married someone who treats dinner as gas station nachos and treats money the same way. A trust lets you plan for both situations.
+Gifting premium payments for ILITs involves a few steps that must be carefully adhered to. Your trustee sends a written notice each time you make a contribution. If you skip the notice, the IRS could reclassify the gift, triggering a gift tax or eating into your lifetime tax exemption. It's a paperwork process that is not "hard" but does require intentional planning every year.
 
 ## Putting It All Together
 
-The gold standard isn't just an ILIT sitting by itself. It's an ILIT that fits inside your broader estate plan. Your revocable living trust handles your assets during life and at death. Your ILIT handles the life insurance. Your powers of attorney and healthcare directives handle incapacity. Each piece does one job well.
+The gold standard isn't just an ILIT sitting by itself. An ILIT works when it is one piece of a bigger estate planning puzzle. Your revocable living trust handles division and control of your assets during life and at death. Your ILIT handles life insurance policies. Your powers of attorney and healthcare directives handle incapacity. Each piece does one job well.
 
-The coordination matters. Your ILIT beneficiary designations should match your trust distributions. Your trustee selection should be consistent across documents. And your insurance coverage amount should reflect what your family actually needs after taxes, debts, and living expenses — not a round number your insurance agent suggested over lunch.
+Regularly reevaluating your estate plan is important. Your ILIT beneficiary designations should match your trust distributions; your trustee selection should be consistent across documents. When planning for insurance, make sure your insurance coverage amount accurately reflects what your family actually needs after taxes, debts, and living expenses.
 
-If you already own a policy and want to move it into an ILIT, we can do that. Just know about the three-year rule and plan accordingly. If you don't have a policy yet, even better. We set up the trust first, then the trust applies for the policy. Clean from day one.
+If you already own a policy and want to move it into an ILIT, we can do that. Just know about the three-year rule and plan accordingly. If you don't have a policy yet, set up is quick and painless. The first step is creating the trust.
