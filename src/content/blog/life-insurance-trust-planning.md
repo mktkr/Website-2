@@ -32,7 +32,7 @@ relatedResources:
 
 ## The Problem with Life Insurance You Own Yourself
 
-Most people buy a life insurance policy, name their spouse as beneficiary, and assume they're done. For many families, this setup works. If your estate is near the Estate Tax Exemption cutoff ($15M for individuals/$30M for couples), life insurance may create a math problem and push you over a tax cliff.
+Most people buy a life insurance policy, name their spouse as beneficiary, and assume they're done. For many families, this setup works. If your estate is near the Estate Tax Exemption cutoff ($15M for individuals/$30M for couples), life insurance may create a math problem that drives you over a tax cliff.
 
 The IRS counts life insurance death benefits as part of your taxable estate if you owned the policy when you died. Any assets over the exemption limit are taxed at 40%. A $2 million term policy that was supposed to protect your family might cost your family $800,000.
 
