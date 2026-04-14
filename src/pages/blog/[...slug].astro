@@ -29,7 +29,7 @@ const related = post.data.relatedResources || [];
     <div class="article-hero-img">
       <img
         src={post.data.heroImage}
-        alt={post.data.title}
+        alt={post.data.heroAlt ?? post.data.title}
         width="1200" height="630"
         loading="eager" decoding="async"
       />
@@ -42,7 +42,7 @@ const related = post.data.relatedResources || [];
     <div class="article-closing-img">
       <img
         src={post.data.closingImage}
-        alt={`${post.data.title} — Mesa Estate Planning`}
+        alt={post.data.closingAlt ?? `${post.data.title} — Mesa Estate Planning`}
         width="1200" height="500"
         loading="lazy" decoding="async"
       />

@@ -7,7 +7,9 @@ category: "Article"
 readTime: "4 min read"
 featured: true
 heroImage: "/images/articles/intestacy-hero.webp"
+heroAlt: "Multi-generational Arizona family sharing a warm moment together on a covered patio at golden hour"
 closingImage: "/images/articles/intestacy-superstition-mountains.webp"
+closingAlt: "Superstition Mountains east of Mesa, Arizona at golden hour with saguaro cacti in the foreground"
 ogImage: "/images/articles/intestacy-hero.webp"
 keywords: "intestate succession Arizona, dying without a will Arizona, Arizona estate planning, who inherits without a will, ARS 14-2102, intestacy laws Arizona, blended family estate plan, Arizona community property"
 relatedResources:

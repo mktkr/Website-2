@@ -7,7 +7,9 @@ category: "Trusts"
 readTime: "5 min read"
 featured: true
 heroImage: "/images/articles/blended-family-hero.webp"
+heroAlt: "Multigenerational blended family laughing around a backyard dinner table on a covered Arizona patio at golden hour"
 closingImage: "/images/articles/blended-family-closing.webp"
+closingAlt: "Warm Arizona desert landscape at golden hour evoking a quiet, settled family legacy"
 ogImage: "/images/articles/blended-family-hero.webp"
 keywords: "blended family estate planning Arizona, QTIP trust Arizona, stepchildren inheritance Arizona, community property blended family, Mesa estate planning, ARS 14-2102, second marriage trust planning, remarriage estate plan"
 relatedResources:

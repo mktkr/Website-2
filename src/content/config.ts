@@ -11,7 +11,9 @@ const blog = defineCollection({
     readTime: z.string(),
     featured: z.boolean().default(false),
     heroImage: z.string().optional(),
+    heroAlt: z.string().optional(),
     closingImage: z.string().optional(),
+    closingAlt: z.string().optional(),
     ogImage: z.string().optional(),
     keywords: z.string().optional(),
     relatedResources: z.array(z.object({

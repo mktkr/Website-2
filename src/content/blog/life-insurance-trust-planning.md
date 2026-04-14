@@ -7,7 +7,9 @@ category: "Trusts"
 readTime: "5 min read"
 featured: true
 heroImage: "/images/articles/life-insurance-trust-planning-hero.webp"
+heroAlt: "Wooden filing cabinet drawer pulled halfway open revealing organized manila folders, a framed family photo and potted succulent on top"
 closingImage: "/images/articles/life-insurance-trust-planning-closing.webp"
+closingAlt: "The Salt River winding through golden cottonwood trees east of Mesa, Arizona in late afternoon light with a weathered boulder in the foreground"
 ogImage: "/images/articles/life-insurance-trust-planning-hero.webp"
 keywords: "life insurance trust Arizona, ILIT Arizona, irrevocable life insurance trust Mesa, estate tax planning Arizona, trust and insurance planning, creditor protection life insurance AZ, estate planning Mesa AZ, ILIT gold standard"
 relatedResources:
