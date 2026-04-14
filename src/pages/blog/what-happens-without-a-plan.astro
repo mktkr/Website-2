@@ -13,9 +13,6 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
   ogImage="/images/articles/intestacy-hero.webp"
 >
 
-  <!-- ════════════════════════════════════════════
-       HERO IMAGE
-       ════════════════════════════════════════════ -->
   <div class="article-hero-img">
     <img
       src="/images/articles/intestacy-hero.webp"
@@ -27,17 +24,11 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
     />
   </div>
 
-  <!-- ════════════════════════════════════════════
-       QUICK ANSWER
-       ════════════════════════════════════════════ -->
   <div class="quick-answer">
     <div class="quick-answer-label">Quick Answer</div>
     <p>If you die without a will or trust in Arizona, state law decides who gets your assets — not your family, not your wishes. For married couples with only shared children, the surviving spouse typically inherits everything. But if you have children from a prior relationship, are unmarried, or have a blended family, the results can be dramatically different from what you'd expect.</p>
   </div>
 
-  <!-- ════════════════════════════════════════════
-       SECTION 1
-       ════════════════════════════════════════════ -->
   <h2>Arizona Doesn't Wait for Your Family to Figure It Out</h2>
 
   <p>When someone passes away without a will or trust, the legal term is "dying intestate." It doesn't mean your family gets nothing. It means Arizona's legislature — not you — already decided who gets what.</p>
@@ -46,9 +37,6 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 
   <p>For some families, the default rules happen to line up with what they would have chosen anyway. For many others, especially blended families, unmarried couples, and people with complicated relationships, the results are nothing close.</p>
 
-  <!-- ════════════════════════════════════════════
-       SECTION 2
-       ════════════════════════════════════════════ -->
   <h2>Arizona's Default Rules: Who Gets What</h2>
 
   <p>Arizona is a community property state, which means most assets acquired during a marriage belong equally to both spouses. That matters here because the intestacy rules treat community property and separate property differently.</p>
@@ -77,9 +65,6 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 
   <p>Your entire estate goes to the State of Arizona. This is called "escheat," and while it's rare, it happens. (A.R.S. § 14-2105.)</p>
 
-  <!-- ════════════════════════════════════════════
-       SECTION 3
-       ════════════════════════════════════════════ -->
   <h2>The Blended Family Problem</h2>
 
   <p>Arizona's intestacy rules create the most surprising outcomes for blended families — and blended families are increasingly common.</p>
@@ -90,9 +75,6 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 
   <p>This isn't a hypothetical edge case. It's the default rule for every blended family in Arizona that doesn't have an estate plan.</p>
 
-  <!-- ════════════════════════════════════════════
-       SECTION 4
-       ════════════════════════════════════════════ -->
   <h2>Who Gets Left Out Entirely</h2>
 
   <p>Intestacy laws only recognize certain legal relationships. If someone matters to you but doesn't fit into the statutory hierarchy, they get nothing. Period.</p>
@@ -101,9 +83,6 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 
   <p>On the other hand, people who do inherit under intestacy include legally adopted children (treated the same as biological children), children born outside of marriage (as long as parentage is established), half-siblings (treated the same as full siblings under A.R.S. § 14-2107), and children conceived before death but born after (as long as they survive at least 120 hours, per A.R.S. § 14-2108).</p>
 
-  <!-- ════════════════════════════════════════════
-       SECTION 5
-       ════════════════════════════════════════════ -->
   <h2>A Few More Rules You Should Know</h2>
 
   <p><strong>The 120-hour rule.</strong> To inherit under intestacy, a person must survive the deceased by at least 120 hours — five full days. If your brother is in the same car accident and dies three days after you, his estate doesn't receive your assets. They pass to the next person in line. (A.R.S. § 14-2104.)</p>
@@ -112,9 +91,6 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 
   <p><strong>Intestacy still means probate.</strong> When there is no will or trust, the estate typically goes through probate — the court-supervised process of inventorying assets, paying debts, and distributing what's left. In Arizona, informal probate is straightforward, but it still takes six to twelve months, costs money, and becomes part of the public record.</p>
 
-  <!-- ════════════════════════════════════════════
-       SECTION 6
-       ════════════════════════════════════════════ -->
   <h2>The Real Cost of No Plan</h2>
 
   <p>The financial cost of dying without a plan is real — probate fees, attorney fees, potential disputes among heirs. But the bigger cost is the one families feel most: confusion, conflict, and the knowledge that this isn't what their loved one would have wanted.</p>
@@ -123,7 +99,6 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 
   <p>If you have a spouse, children, a home, or assets you care about passing to the right people, the question isn't whether you can afford to plan. It's whether your family can afford for you not to.</p>
 
-  <!-- CLOSING IMAGE -->
   <div class="article-closing-img">
     <img
       src="/images/articles/intestacy-superstition-mountains.webp"
@@ -136,76 +111,3 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
   </div>
 
 </BlogLayout>
-
-<!-- ════════════════════════════════════════════════════════════
-     SCOPED STYLES — article-specific enhancements
-     Astro scopes these automatically so they don't leak
-     ════════════════════════════════════════════════════════════ -->
-<style>
-  /* Hero image — full bleed within article column */
-  .article-hero-img {
-    margin: -8px -24px 32px -24px;
-    border-radius: 6px;
-    overflow: hidden;
-    line-height: 0;
-  }
-  .article-hero-img img {
-    width: 100%;
-    height: auto;
-    display: block;
-    aspect-ratio: 1200 / 630;
-    object-fit: cover;
-  }
-
-  /* Closing image */
-  .article-closing-img {
-    margin: 36px -24px 0 -24px;
-    border-radius: 6px;
-    overflow: hidden;
-    line-height: 0;
-  }
-  .article-closing-img img {
-    width: 100%;
-    height: auto;
-    display: block;
-    aspect-ratio: 1200 / 500;
-    object-fit: cover;
-  }
-
-  /* Bronze callout — "read that again" emphasis */
-  .callout-bronze {
-    background: #F5EFE3;
-    border-left: 3px solid var(--bronze, #9C7E4A);
-    padding: 20px 24px;
-    border-radius: 0 6px 6px 0;
-    margin: 24px 0;
-  }
-  .callout-bronze p {
-    font-size: 0.94rem;
-    line-height: 1.72;
-    margin-bottom: 0;
-    font-weight: 400;
-    color: var(--charcoal, #2C2C2C);
-  }
-
-  /* H3 — italic scenario headings */
-  h3 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.15rem;
-    font-weight: 500;
-    font-style: italic;
-    color: var(--charcoal, #2C2C2C);
-    margin: 24px 0 8px;
-    line-height: 1.3;
-  }
-
-  /* Mobile */
-  @media (max-width: 640px) {
-    .article-hero-img,
-    .article-closing-img {
-      margin-left: -16px;
-      margin-right: -16px;
-      border-radius: 0;
-    }
-  }
-</style>
