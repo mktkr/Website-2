@@ -10,25 +10,14 @@ import LeadCarousel from '../components/LeadCarousel.astro';
 >
 
 <!-- ═══════════════════════════════════
-     HERO — 5-slide video carousel, 4.5s auto-rotate
+     HERO — Fullscreen video background
 ═══════════════════════════════════ -->
-<section class="v2-hero" data-hero-carousel>
+<section class="v2-hero">
   <div class="v2-hero-overlay"></div>
 
-  <video class="v2-hero-video is-active" data-slide="0" autoplay muted loop playsinline preload="auto" poster="/images/hp-hero-1-poster.jpg">
-    <source src="/video/hp-hero-1.mp4" type="video/mp4">
-  </video>
-  <video class="v2-hero-video" data-slide="1" muted loop playsinline preload="metadata" poster="/images/hp-hero-2-poster.jpg">
-    <source src="/video/hp-hero-2.mp4" type="video/mp4">
-  </video>
-  <video class="v2-hero-video" data-slide="2" muted loop playsinline preload="metadata" poster="/images/hp-hero-3-poster.jpg">
-    <source src="/video/hp-hero-3.mp4" type="video/mp4">
-  </video>
-  <video class="v2-hero-video" data-slide="3" muted loop playsinline preload="metadata" poster="/images/hp-hero-4-poster.jpg">
-    <source src="/video/hp-hero-4.mp4" type="video/mp4">
-  </video>
-  <video class="v2-hero-video" data-slide="4" muted loop playsinline preload="metadata" poster="/images/hp-hero-5-poster.jpg">
-    <source src="/video/hp-hero-5.mp4" type="video/mp4">
+  <!-- Video background (replace src with your video file) -->
+  <video class="v2-hero-video" autoplay muted loop playsinline poster="/images/hero-poster.png">
+    <source src="/video/hero-bg.mp4" type="video/mp4">
   </video>
 
   <div class="v2-hero-content">
@@ -177,56 +166,5 @@ import LeadCarousel from '../components/LeadCarousel.astro';
     <a href="/contact" class="v2-contact-cta-btn">Book Free Consultation</a>
   </div>
 </section>
-
-<script is:inline>
-  (function () {
-    const hero = document.querySelector('[data-hero-carousel]');
-    if (!hero) return;
-    const slides = hero.querySelectorAll('.v2-hero-video');
-    if (slides.length < 2) return;
-
-    const INTERVAL = 4500;
-    let current = 0;
-    let timer = null;
-
-    function advance() {
-      const next = (current + 1) % slides.length;
-      slides[current].classList.remove('is-active');
-      slides[current].pause();
-      slides[next].classList.add('is-active');
-      try { slides[next].currentTime = 0; } catch (e) {}
-      const p = slides[next].play();
-      if (p && typeof p.catch === 'function') p.catch(function(){});
-      current = next;
-    }
-
-    function start() {
-      if (timer) return;
-      timer = setInterval(advance, INTERVAL);
-    }
-    function stop() {
-      if (!timer) return;
-      clearInterval(timer);
-      timer = null;
-    }
-
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) stop();
-      else start();
-    });
-
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) start();
-          else stop();
-        });
-      }, { threshold: 0.1 });
-      io.observe(hero);
-    } else {
-      start();
-    }
-  })();
-</script>
 
 </BaseLayout>
